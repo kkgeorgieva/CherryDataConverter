@@ -1,0 +1,12 @@
+[INFO]
+# This is a template configuration file.
+# 
+#
+
+[FILE]
+input.fileType={FILENAME};
+output.fileType={FILENAME};
+
+[SPECS]
+collumn.count={COUNT};
+collumn.width={WIDTH};
