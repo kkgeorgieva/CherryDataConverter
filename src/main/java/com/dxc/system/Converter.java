@@ -6,17 +6,19 @@ import com.dxc.file.config.ConfigProcessor;
 import com.dxc.file.config.Property;
 import com.dxc.file.reader.CSVFileReader;
 import com.dxc.file.reader.FileReaderInterface;
+import com.dxc.file.reader.FileReaderProvider;
 import com.dxc.file.writer.CSVFileWriter;
 import com.dxc.file.writer.FileWriterInterface;
+import com.dxc.file.writer.FileWriterProvider;
 
 public class Converter {
 	// The converter will store the supported file types
 	//Throws exception when the requested file type is not supported by the converter
 	
-	public FileReaderInterface fileReader;
-	public FileWriterInterface fileWriter;
+	public FileReaderProvider fileReader;
+	public FileWriterProvider fileWriter;
 	
-	public Converter(FileReaderInterface fileReader, FileWriterInterface fileWriter) {
+	public Converter(FileReaderProvider fileReader, FileWriterProvider fileWriter) {
 		this.fileReader = fileReader;
 		this.fileWriter = fileWriter;
 	}
