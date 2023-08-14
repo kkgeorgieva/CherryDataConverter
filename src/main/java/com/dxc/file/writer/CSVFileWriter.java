@@ -3,7 +3,7 @@ package com.dxc.file.writer;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class CSVFileWriter implements FileWriter {
+public class CSVFileWriter implements FileWriterInterface {
 	
 	public CSVFileWriter(ArrayList<String> input, String fileName) {
 			
