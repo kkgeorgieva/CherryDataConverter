@@ -2,8 +2,15 @@ package com.dxc.file.writer;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
-public class CSVFileWriter implements FileWriterInterface {
+import com.dxc.file.config.Property;
+
+public class CSVFileWriter extends FileWriterProvider {
+
+	public CSVFileWriter(List<Property> config) {
+		super(config);
+	}
 
 	@Override
 	public void write(ArrayList<String> input, String fileName) {

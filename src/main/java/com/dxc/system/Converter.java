@@ -1,5 +1,7 @@
 package com.dxc.system;
 
+import java.util.ArrayList;
+
 import com.dxc.file.config.ConfigProcessor;
 import com.dxc.file.config.Property;
 import com.dxc.file.reader.CSVFileReader;
@@ -19,16 +21,29 @@ public class Converter {
 		this.fileWriter = fileWriter;
 	}
 	
+	public void convert(String inputFilePath, String outputFilePath) {
+		ArrayList<String> readFile = fileReader.readFile(outputFilePath);
+		
+		fileWriter.write(readFile, outputFilePath);
+	}
+	
 	public static void main(String[] args) {
-		Converter cvt = new Converter(new CSVFileReader(), new CSVFileWriter());
+		String inputFile = args[0];
+		String outputFile = args[1];
+		String configFile = args[2];
 		
-		cvt.fileWriter.write(cvt.fileReader.readFile("C:\\ws\\Test.csv"), "C:\\ws\\ahahah.csv");
+		ConfigProcessor cf = new ConfigProcessor(configFile);
 		
-		ConfigProcessor cf = new ConfigProcessor("C:\\ws\\app.config");
+		//Read the input file type and output file type, and create appropriate reader and writer.
+
+		Converter cvt = new Converter(new CSVFileReader(cf.getPropsList()), new CSVFileWriter(cf.getPropsList()));
 		
-		for (Property pr : cf.getPropsList()) {
-			System.out.println(pr.toString());
-		}
+		cvt.convert(inputFile, outputFile);
+		
+//		
+//		for (Property pr : cf.getPropsList()) {
+//			System.out.println(pr.toString());
+//		}
 	}
 
 }

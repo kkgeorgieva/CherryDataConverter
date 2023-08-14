@@ -5,8 +5,15 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
-public class CSVFileReader implements FileReaderInterface {
+import com.dxc.file.config.Property;
+
+public class CSVFileReader extends FileReaderProvider {
+
+	public CSVFileReader(List<Property> config) {
+		super(config);
+	}
 
 	BufferedReader br = null;
 	ArrayList<String> data = new ArrayList<>();
