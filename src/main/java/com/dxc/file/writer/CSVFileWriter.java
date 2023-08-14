@@ -4,10 +4,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class CSVFileWriter implements FileWriterInterface {
-	
-	public CSVFileWriter(ArrayList<String> input, String fileName) {
-			
-	}
 
 	@Override
 	public void write(ArrayList<String> input, String fileName) {

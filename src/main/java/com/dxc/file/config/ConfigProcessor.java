@@ -37,13 +37,17 @@ public class ConfigProcessor {
 		
 		
 		prop.entrySet().forEach(e -> {
-			String category = e.getKey().toString().split(".")[0];
-			String key = e.getKey().toString();
+			String category = e.getKey().toString().split("\\.")[0];
+			String key = e.getKey().toString().split("\\.")[1];
 			String value = e.getValue().toString();
 			
-			this.props.add(new Property(category, key, value));
+			this.getPropsList().add(new Property(category, key, value));
 		});;
 		
+	}
+
+	public List<Property> getPropsList() {
+		return props;
 	}
 	
 

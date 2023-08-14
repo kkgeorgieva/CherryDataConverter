@@ -26,5 +26,7 @@ public class Property {
 		return this.value;
 	}
 	
-
+	public String toString() {
+		return new String(category + "." + key + "=" + value);
+	}
 }
