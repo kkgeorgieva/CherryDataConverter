@@ -1,14 +1,11 @@
 package com.dxc.system;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.dxc.file.config.ConfigProcessor;
 import com.dxc.file.config.Property;
-import com.dxc.file.reader.CSVFileReader;
-import com.dxc.file.reader.FileReaderInterface;
 import com.dxc.file.reader.FileReaderProvider;
-import com.dxc.file.writer.CSVFileWriter;
-import com.dxc.file.writer.FileWriterInterface;
 import com.dxc.file.writer.FileWriterProvider;
 
 public class Converter {
@@ -30,7 +27,7 @@ public class Converter {
 	}
 	
 	public static void main(String[] args) {
-		String inputFile = args[0];
+		/*String inputFile = args[0];
 		String outputFile = args[1];
 		String configFile = args[2];
 		
@@ -41,11 +38,26 @@ public class Converter {
 		Converter cvt = new Converter(new CSVFileReader(cf.getPropsList()), new CSVFileWriter(cf.getPropsList()));
 		
 		cvt.convert(inputFile, outputFile);
+		*/
+		
+		String configFile = "C:\\WS\\repos\\CherryDataConvert\\configExample2.txt"; // Provide the correct path to your config file
+
+        ConfigProcessor configProcessor = new ConfigProcessor(configFile);
+        List<Property> propsList = configProcessor.getPropsList();
+
+        for (Property property : propsList) {
+            String category = property.getCategory();
+            String key = property.getKey();
+            String value = property.getValue();
+
+            System.out.println("Category: " + category + ", Key: " + key + ", Value: " + value);
+ 
 		
 //		
 //		for (Property pr : cf.getPropsList()) {
 //			System.out.println(pr.toString());
 //		}
-	}
+        }
 
+	}
 }
