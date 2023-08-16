@@ -1,7 +1,10 @@
 input:
-	File: input.csv
+ File: input.csv
 
 output:
-	File: output.csv
-	ColumnWidths: [15,20,30,15]
-	
+ File: output.csv
+ ColumnWidths: 
+ - 20
+ - 15
+ - 10
+ - 25	
