@@ -27,7 +27,9 @@ public class Converter {
 	}
 	
 	public static void main(String[] args) {
-		/*String inputFile = args[0];
+		
+		/* Implementation for case with Properties Class
+		 * String inputFile = args[0];
 		String outputFile = args[1];
 		String configFile = args[2];
 		

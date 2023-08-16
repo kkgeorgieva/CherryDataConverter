@@ -1,12 +1,7 @@
-[INFO]
-# This is a template configuration file.
-# 
-#
+input:
+	File: input.csv
 
-[FILE]
-input.fileType={FILENAME};
-output.fileType={FILENAME};
-
-[SPECS]
-collumn.count={COUNT};
-collumn.width={WIDTH};
+output:
+	File: output.csv
+	ColumnWidths: [15,20,30,15]
+	
