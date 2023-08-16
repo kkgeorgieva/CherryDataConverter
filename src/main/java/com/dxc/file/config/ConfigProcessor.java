@@ -5,14 +5,15 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Stream;
 
 import org.yaml.snakeyaml.Yaml;
 
 public class ConfigProcessor {
 	
+	public static List<Property> propertyList;
 	
-
-	public static List<Property> parseConfig(String configFile) {
+	public static void parseConfig(String configFile) {
         List<Property> properties = new ArrayList<>();
 
         try (FileInputStream inputStream = new FileInputStream(configFile)) {
@@ -33,7 +34,11 @@ public class ConfigProcessor {
             e.printStackTrace();
         }
 
-        return properties;
+        propertyList = properties;
     }
+	
+	public static List<Property> getByCategory(String categoryString) {
+		return propertyList.stream().filter(property -> property.getCategory().equals(categoryString)).toList();
+	}
 
 }

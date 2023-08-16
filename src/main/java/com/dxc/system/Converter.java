@@ -1,10 +1,15 @@
 package com.dxc.system;
+
+import java.io.Reader;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.dxc.file.config.ConfigProcessor;
 import com.dxc.file.config.Property;
+import com.dxc.file.reader.CSVFileReader;
 import com.dxc.file.reader.FileReaderProvider;
+import com.dxc.file.writer.CSVFileWriter;
+import com.dxc.file.writer.FWFileWriter;
 import com.dxc.file.writer.FileWriterProvider;
 
 public class Converter {
@@ -21,7 +26,7 @@ public class Converter {
 	}
 
 	public void convert(String inputFilePath, String outputFilePath) {
-		ArrayList<String> readFile = fileReader.readFile(outputFilePath);
+		ArrayList<String> readFile = fileReader.readFile(inputFilePath);
 
 		fileWriter.write(readFile, outputFilePath);
 	}
@@ -29,23 +34,25 @@ public class Converter {
 	public static void main(String[] args) {
 
 		// Implementation for case with Properties Class
-		//String inputFile = args[0];
-		//String outputFile = args[1];
-		//String configFile = args[2];
+		 String inputFile = args[0];
+		 String outputFile = args[1];
+		 String configFile = args[2];
 
-		List<Property> parseConfig = ConfigProcessor.parseConfig("configTemplate.yaml");
+		ConfigProcessor.parseConfig(configFile);
 
 		// Read the input file type and output file type, and create appropriate reader
 		// and writer.
 
-		// Converter cvt = new Converter(new CSVFileReader(cf.getPropsList()), new
-		// CSVFileWriter(cf.getPropsList()));
+		CSVFileReader reader = new CSVFileReader(ConfigProcessor.getByCategory(FileReaderProvider.getConfigCategory()));
+		FWFileWriter writer = new FWFileWriter(ConfigProcessor.getByCategory(FileWriterProvider.getConfigCategory()));
 
-		// cvt.convert(inputFile, outputFile);
+		Converter cvt = new Converter(reader, writer);
 
-		for (Property pr : parseConfig) {
-			System.out.println(pr.toString());
-		}
+		cvt.convert(inputFile, outputFile);
+
+//		for (Property pr : parseConfig) {
+//			System.out.println(pr.toString());
+//		}
 	}
 
 }
