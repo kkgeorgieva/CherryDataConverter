@@ -30,7 +30,6 @@ public class CSVFileReader extends FileReaderProvider {
         try {
             while ((line = br.readLine()) != null) {
                 data.add(line);
-                System.out.println(line);
             }
         } catch (IOException e) {
             e.printStackTrace();
