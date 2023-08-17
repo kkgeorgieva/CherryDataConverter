@@ -5,35 +5,37 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.dxc.file.config.Property;
-
+/**
+ * A file writer class designated for the .csv format.
+ */
 public class CSVFileWriter extends FileWriterProvider {
-
+	/**
+	 * Constructor, which creates a new instance.
+	 * @param config List of configurations, designated for a reader class.
+	 */
 	public CSVFileWriter(List<Property> config) {
 		super(config);
 	}
-
+	/**
+	 * A method that writes data to a file and formats it in a specific way.
+	 * @param input data from the input file.
+	 * @param fileName file name.
+	 */
 	@Override
 	public void write(ArrayList<String> input, String fileName) {
-		// Receives an arrayList with Strings 
-		// Receives fileName, which indicates the output file's name
-				
-		// Iterates through the list and stores the data into a ".csv" file
-		// Adds separators along the way 
 		try {
 			
 		java.io.FileWriter fileWriter = new java.io.FileWriter(fileName);
 		
-		// iteration through the arayList
+		
 		for(String line: input) {
 			String [] data = line.split(",");
 			
-			//writes each value followed by a comma, except for the last one
 			for(int i = 0; i< data.length-1; i++) {
 				fileWriter.append(data[i]);
 				fileWriter.append(',');
 				
 			}
-			// adds the last element of the row and appends a new line
 			fileWriter.append(data[data.length-1]);
 			fileWriter.append("\n");
 		}

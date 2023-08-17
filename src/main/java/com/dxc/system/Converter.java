@@ -13,26 +13,42 @@ import com.dxc.file.reader.FileReaderProvider;
 import com.dxc.file.writer.CSVFileWriter;
 import com.dxc.file.writer.FWFileWriter;
 import com.dxc.file.writer.FileWriterProvider;
-
+/**
+ * Converter is a class that contains the supported file formats, instances of reader and writer
+ * for the needed formats for conversion.
+ * Its' task is to execute the whole converting process and throw exceptions when this is not possible.
+ */
 public class Converter {
-	// The converter will store the supported file types
-	// Throws exception when the requested file type is not supported by the
-	// converter
-
+	
 	public FileReaderProvider fileReader;
 	public FileWriterProvider fileWriter;
-
+	/**
+	 * Creates an instance of the converter
+	 * @param fileReader Reader class for the input file
+	 * @param fileWriter Writer class for the output file
+	 */
 	public Converter(FileReaderProvider fileReader, FileWriterProvider fileWriter) {
 		this.fileReader = fileReader;
 		this.fileWriter = fileWriter;
 	}
-
+	/**
+	 * Method that executes the whole process of converting from one file format to another.
+	 * If the output file does not exists, it creates a new file in the user's system and writes to it.
+	 * @param inputFilePath path of the input file
+	 * @param outputFilePath path of the output file
+	 */
 	public void convert(String inputFilePath, String outputFilePath) {
 		ArrayList<String> readFile = fileReader.readFile(inputFilePath);
 
 		fileWriter.write(readFile, outputFilePath);
 	}
-
+	/**
+	 * Starting point of the program.
+	 * Creates instances of the needed reader and writer for the given file formats.
+	 * Creates an instance of the converter, which executes the conversion process.
+	 * @param args input file path, output file path, configuration file path, input file format and
+	 * output file format separated by spaces.
+	 */
 	public static void main(String[] args) {
 
 		// Implementation for case with Properties Class
@@ -79,7 +95,6 @@ public class Converter {
 			// Create a new instance of any class with the list of properties
 			fileWriter = (FileWriterProvider) fileWriterConstructor.newInstance(propertiesWriter);
 		} catch (ClassNotFoundException | NoSuchMethodException | SecurityException | InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -88,10 +103,6 @@ public class Converter {
 		Converter cvt = new Converter(fileReader, fileWriter);
 
 		cvt.convert(inputFile, outputFile);
-
-//		for (Property pr : parseConfig) {
-//			System.out.println(pr.toString());
-//		}
 	}
 
 }
