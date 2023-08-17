@@ -51,7 +51,7 @@ public class Converter {
 	 * @param args input file path, output file path, configuration file path, input file format and
 	 * output file format separated by spaces.
 	 */
-	/*
+	
 	public static void main(String[] args) {
 
 		// Implementation for case with Properties Class
@@ -88,8 +88,8 @@ public class Converter {
 			// Create a new instance of any class with the list of properties
 			fileReader = (FileReaderProvider) fileReaderConstructor.newInstance(properties);
 			
-			logger.log(Level.INFO, "Created an instance of " + "com.dxc.file.reader." + inputFileType + "FileReader");
-			logger.info("asdaddsfdsf");
+			logger.log(Level.DEBUG, "Created an instance of " + "com.dxc.file.reader." + inputFileType + "FileReader");
+			
 			fileWriterClass = Class.forName("com.dxc.file.writer." + outputFileType + "FileWriter");
 			// Get a generic Constructor object for any constructor
 			Constructor<?> fileWriterConstructor = fileWriterClass.getConstructor(List.class);
@@ -100,7 +100,7 @@ public class Converter {
 			// Create a new instance of any class with the list of properties
 			fileWriter = (FileWriterProvider) fileWriterConstructor.newInstance(propertiesWriter);
 			
-			logger.log(Level.INFO, "Created an instance of " + "com.dxc.file.writer." + outputFileType + "FileWriter");
+			logger.log(Level.ERROR, "Created an instance of " + "com.dxc.file.writer." + outputFileType + "FileWriter");
 		} catch (ClassNotFoundException | NoSuchMethodException | SecurityException | InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
 			e.printStackTrace();
 		}
@@ -111,6 +111,6 @@ public class Converter {
 
 		cvt.convert(inputFile, outputFile);
 	}
-*/
+
 }
 
