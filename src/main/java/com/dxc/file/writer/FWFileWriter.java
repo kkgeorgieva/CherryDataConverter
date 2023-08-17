@@ -6,11 +6,16 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.dxc.file.config.Property;
 /**
  * A file writer class designated for the fixed-width file format.
  */
 public class FWFileWriter extends FileWriterProvider {
+	
+	Logger logger = LogManager.getLogger(FWFileWriter.class);
 
 	private List<Integer> widths = new ArrayList<>();
 	/**
@@ -32,6 +37,8 @@ public class FWFileWriter extends FileWriterProvider {
 		try {
 			fileWriter = new PrintWriter(new FileWriter(fileName));
 		} catch (IOException e) {
+			
+			logger.error(e.getMessage());
 			e.printStackTrace();
 			return false;
 		}
@@ -49,6 +56,8 @@ public class FWFileWriter extends FileWriterProvider {
 		}
 		fileWriter.flush();
 		fileWriter.close();
+		
+		logger.info("Successfully written file "+ fileName);
 		return true;
 	}
 
@@ -59,6 +68,7 @@ public class FWFileWriter extends FileWriterProvider {
 		
 		for (String str : arr) {
 		  this.widths.add(Integer.parseInt(str));
+		  logger.info("Successfully parsed column widths.");
 		}
 	}
 }

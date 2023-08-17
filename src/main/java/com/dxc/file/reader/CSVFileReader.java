@@ -7,11 +7,17 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.dxc.file.config.Property;
+import com.dxc.file.writer.CSVFileWriter;
 /**
  * A file reader class designated for the .csv format.
  */
 public class CSVFileReader extends FileReaderProvider {
+	
+	private static Logger logger = LogManager.getLogger(CSVFileReader.class);
 	
 	private BufferedReader br = null;
 
@@ -32,6 +38,7 @@ public class CSVFileReader extends FileReaderProvider {
         try {
             br = new BufferedReader(new FileReader(filePath));
         } catch (FileNotFoundException e) {
+        	logger.error(e.getMessage());
             e.printStackTrace();
         }
 
@@ -41,15 +48,19 @@ public class CSVFileReader extends FileReaderProvider {
                 data.add(line);
             }
         } catch (IOException e) {
+        	logger.error(e.getMessage());
             e.printStackTrace();
         }
 
         try {
             br.close();
         } catch (IOException e) {
+        	logger.error(e.getMessage());
             e.printStackTrace();
         }
         
+        logger.info("Successfully read file and parsed into ArrayList of Strings");
         return data;
+       
 	}
 }

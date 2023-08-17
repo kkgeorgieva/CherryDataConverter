@@ -4,11 +4,17 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.dxc.file.config.Property;
+import com.dxc.system.Converter;
 /**
  * A file writer class designated for the .csv format.
  */
 public class CSVFileWriter extends FileWriterProvider {
+	
+	private static Logger logger = LogManager.getLogger(CSVFileWriter.class);
 	/**
 	 * Constructor, which creates a new instance.
 	 * @param config List of configurations, designated for a reader class.
@@ -41,11 +47,14 @@ public class CSVFileWriter extends FileWriterProvider {
 		}
 		fileWriter.flush();
 		fileWriter.close();
+		
+		logger.info("Successfully written file " + fileName);
 		return true;
 		
 		
 		} catch (IOException e) {
-			System.out.println("Error occured while creating new CSV file.");
+		
+			logger.error(e.getMessage());
 			return false;
 		}
 		
