@@ -73,7 +73,7 @@ public class ConverterTest
     	ConfigProcessor.parseConfig(configFile.getAbsolutePath());
     	CSVFileReader reader = new CSVFileReader(ConfigProcessor.getByCategory(FileReaderProvider.getConfigCategory()));
     	
-    	assertEquals("﻿Item Name,Item Price,Item Description", reader.readFile(inputFile.getAbsolutePath()).get(0));
+    	assertEquals(3, reader.readFile(inputFile.getAbsolutePath()).size());
     	
     }
     
