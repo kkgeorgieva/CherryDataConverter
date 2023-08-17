@@ -37,10 +37,10 @@ public class Converter {
 	 * @param inputFilePath path of the input file
 	 * @param outputFilePath path of the output file
 	 */
-	public void convert(String inputFilePath, String outputFilePath) {
+	public boolean convert(String inputFilePath, String outputFilePath) {
 		ArrayList<String> readFile = fileReader.readFile(inputFilePath);
 
-		fileWriter.write(readFile, outputFilePath);
+		return fileWriter.write(readFile, outputFilePath);
 	}
 	/**
 	 * Starting point of the program.
@@ -49,6 +49,7 @@ public class Converter {
 	 * @param args input file path, output file path, configuration file path, input file format and
 	 * output file format separated by spaces.
 	 */
+	/*
 	public static void main(String[] args) {
 
 		// Implementation for case with Properties Class
@@ -104,5 +105,6 @@ public class Converter {
 
 		cvt.convert(inputFile, outputFile);
 	}
-
+*/
 }
+

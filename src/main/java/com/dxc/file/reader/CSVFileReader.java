@@ -14,7 +14,7 @@ import com.dxc.file.config.Property;
 public class CSVFileReader extends FileReaderProvider {
 	
 	private BufferedReader br = null;
-	private ArrayList<String> data = new ArrayList<>();
+
 	/**
 	 * Constructor, which creates a new instance.
 	 * @param config List of configurations, designated for a reader class.

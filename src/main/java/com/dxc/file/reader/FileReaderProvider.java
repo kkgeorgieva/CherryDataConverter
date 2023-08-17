@@ -1,5 +1,6 @@
 package com.dxc.file.reader;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -15,6 +16,7 @@ public abstract class FileReaderProvider implements FileReaderInterface {
 	
 	protected List<Property> config;
 	protected static String configCategory = "input";
+	public ArrayList<String> data = new ArrayList<>();
 	/**
 	 * Constructor, which creates a new instance.
 	 * @param config List of configurations, designated for a reader class.

@@ -27,12 +27,13 @@ public class FWFileWriter extends FileWriterProvider {
 	 * @param fileName file name.
 	 */
 	@Override
-	public void write(ArrayList<String> input, String fileName) {
+	public boolean write(ArrayList<String> input, String fileName) {
 		PrintWriter fileWriter = null;
 		try {
 			fileWriter = new PrintWriter(new FileWriter(fileName));
 		} catch (IOException e) {
 			e.printStackTrace();
+			return false;
 		}
 
 		for (String line : input) {
@@ -48,7 +49,7 @@ public class FWFileWriter extends FileWriterProvider {
 		}
 		fileWriter.flush();
 		fileWriter.close();
-
+		return true;
 	}
 
 	private void getColumnWidths() {

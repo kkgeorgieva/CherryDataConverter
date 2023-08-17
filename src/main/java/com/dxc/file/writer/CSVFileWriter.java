@@ -22,7 +22,7 @@ public class CSVFileWriter extends FileWriterProvider {
 	 * @param fileName file name.
 	 */
 	@Override
-	public void write(ArrayList<String> input, String fileName) {
+	public boolean write(ArrayList<String> input, String fileName) {
 		try {
 			
 		java.io.FileWriter fileWriter = new java.io.FileWriter(fileName);
@@ -41,11 +41,12 @@ public class CSVFileWriter extends FileWriterProvider {
 		}
 		fileWriter.flush();
 		fileWriter.close();
-		
+		return true;
 		
 		
 		} catch (IOException e) {
 			System.out.println("Error occured while creating new CSV file.");
+			return false;
 		}
 		
 		

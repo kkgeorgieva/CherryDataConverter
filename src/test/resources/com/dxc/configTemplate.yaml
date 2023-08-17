@@ -1,0 +1,9 @@
+input:
+ file: input.csv
+
+output:
+ file: output.csv
+ columnWidths: 
+ - 20
+ - 50
+ - 10
