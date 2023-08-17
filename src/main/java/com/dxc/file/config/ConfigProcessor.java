@@ -11,7 +11,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.yaml.snakeyaml.Yaml;
 
-import com.dxc.system.Converter;
+import com.dxc.converter.Converter;
 
 /**
  * ConfigProcessor is a class, that handles processing a configuration file's data
@@ -29,7 +29,7 @@ public class ConfigProcessor {
 	 * and generates properties based on it.
 	 * @param configFile file containing information needed for converting from one file format to another
 	 */
-	public static void parseConfig(String configFile) {
+	public static boolean parseConfig(String configFile) {
         List<Property> properties = new ArrayList<>();
 
         try (FileInputStream inputStream = new FileInputStream(configFile)) {
@@ -49,11 +49,13 @@ public class ConfigProcessor {
                     logger.info("Created a new property from the config file");
                 }
             }
+            propertyList = properties;
+            return true;
         } catch (IOException e) {
             logger.error(e.getMessage());
+            return false;
         }
 
-        propertyList = properties;
     }
 	/**
 	 * Method that filters properties by given category and returns them.

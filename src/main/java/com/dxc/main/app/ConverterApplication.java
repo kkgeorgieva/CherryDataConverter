@@ -7,31 +7,38 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.dxc.converter.Converter;
 import com.dxc.file.config.ConfigProcessor;
 import com.dxc.file.config.Property;
 import com.dxc.file.reader.FileReaderProvider;
 import com.dxc.file.writer.FileWriterProvider;
-import com.dxc.system.Converter;
 
 public class ConverterApplication {
 	
 	private static Logger logger = LogManager.getLogger(Converter.class);
 	
+	/**
+	 * Starting point of the program.
+	 * Creates instances of the needed reader and writer for the given file formats.
+	 * Creates an instance of the converter, which executes the conversion process.
+	 * @param args input file path, output file path, configuration file path, input file format and
+	 * output file format separated by spaces.
+	 */
 	public static void main(String[] args) {
 		
 
 		// Implementation for case with Properties Class
-//		String inputFile = args[0];
-//		String outputFile = args[1];
-//		String configFile = args[2];
-//		String inputFileType = args[3];
-//		String outputFileType = args[4];
+		String inputFile = args[0];
+		String outputFile = args[1];
+		String configFile = args[2];
+		String inputFileType = args[3];
+		String outputFileType = args[4];
 		
-		String inputFile = "C:\\ws\\Test.csv";
-		String outputFile = "C:\\ws\\Output.csv";
-		String configFile = "C:\\ws\\configTemplate.yaml";
-		String inputFileType = "CSV";
-		String outputFileType = "FW";
+//		String inputFile = "C:\\ws\\Test.csv";
+//		String outputFile = "C:\\ws\\Output.csv";
+//		String configFile = "C:\\ws\\configTemplate.yaml";
+//		String inputFileType = "CSV";
+//		String outputFileType = "FW";
 
 		ConfigProcessor.parseConfig(configFile);
 

@@ -7,8 +7,8 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.dxc.converter.Converter;
 import com.dxc.file.config.Property;
-import com.dxc.system.Converter;
 /**
  * A file writer class designated for the .csv format.
  */

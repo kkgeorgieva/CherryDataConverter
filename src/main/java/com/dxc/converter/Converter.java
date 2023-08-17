@@ -1,4 +1,4 @@
-package com.dxc.system;
+package com.dxc.converter;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
@@ -42,15 +42,4 @@ public class Converter {
 
 		return fileWriter.write(readFile, outputFilePath);
 	}
-	/**
-	 * Starting point of the program.
-	 * Creates instances of the needed reader and writer for the given file formats.
-	 * Creates an instance of the converter, which executes the conversion process.
-	 * @param args input file path, output file path, configuration file path, input file format and
-	 * output file format separated by spaces.
-	 */
-	
-	
-
 }
-
