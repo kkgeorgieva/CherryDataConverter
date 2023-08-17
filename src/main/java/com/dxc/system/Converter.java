@@ -88,7 +88,7 @@ public class Converter {
 			// Create a new instance of any class with the list of properties
 			fileReader = (FileReaderProvider) fileReaderConstructor.newInstance(properties);
 			
-			logger.log(Level.DEBUG, "Created an instance of " + "com.dxc.file.reader." + inputFileType + "FileReader");
+			logger.info("Created an instance of " + "com.dxc.file.reader." + inputFileType + "FileReader");
 			
 			fileWriterClass = Class.forName("com.dxc.file.writer." + outputFileType + "FileWriter");
 			// Get a generic Constructor object for any constructor
@@ -100,9 +100,9 @@ public class Converter {
 			// Create a new instance of any class with the list of properties
 			fileWriter = (FileWriterProvider) fileWriterConstructor.newInstance(propertiesWriter);
 			
-			logger.log(Level.ERROR, "Created an instance of " + "com.dxc.file.writer." + outputFileType + "FileWriter");
+			logger.info("Created an instance of " + "com.dxc.file.writer." + outputFileType + "FileWriter");
 		} catch (ClassNotFoundException | NoSuchMethodException | SecurityException | InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
-			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 
 

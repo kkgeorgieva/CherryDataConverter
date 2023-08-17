@@ -7,7 +7,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Stream;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.yaml.snakeyaml.Yaml;
+
+import com.dxc.system.Converter;
 
 /**
  * ConfigProcessor is a class, that handles processing a configuration file's data
@@ -19,6 +23,7 @@ public class ConfigProcessor {
 	 * A list containing the generated properties.
 	 */
 	public static List<Property> propertyList;
+	private static Logger logger = LogManager.getLogger(ConfigProcessor.class);
 	/**
 	 * Method that parses the configuration file, recognizes sections and it's related information
 	 * and generates properties based on it.
@@ -30,6 +35,8 @@ public class ConfigProcessor {
         try (FileInputStream inputStream = new FileInputStream(configFile)) {
             Yaml yaml = new Yaml();
             Map<String, Object> configMap = yaml.load(inputStream);
+            
+            logger.info("Loaded the config file into the Config Processor");
 
             for (Map.Entry<String, Object> entry : configMap.entrySet()) {
                 String category = entry.getKey();
@@ -39,10 +46,11 @@ public class ConfigProcessor {
                     String key = propertyEntry.getKey();
                     String value = propertyEntry.getValue().toString();
                     properties.add(new Property(category, key, value));
+                    logger.info("Created a new property from the config file");
                 }
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage());
         }
 
         propertyList = properties;
