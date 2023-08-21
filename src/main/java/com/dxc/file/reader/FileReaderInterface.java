@@ -10,6 +10,7 @@ public interface FileReaderInterface {
 	 * @param filePath file path.
 	 * @return list of file's data; every entry is a new line from the file.
 	 */
-	public ArrayList<String> readFile(String filePath);
+	public String readLine();
+	public String getConfigCategory();
 
 }

@@ -10,6 +10,7 @@ public interface FileWriterInterface {
 	 * @param input data from the input file.
 	 * @param fileName file name.
 	 */
-	boolean write(ArrayList<String> input, String fileName);
+	boolean write(String input);
+	public String getConfigCategory();
 
 }

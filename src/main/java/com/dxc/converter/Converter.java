@@ -11,8 +11,8 @@ import org.apache.logging.log4j.Logger;
 
 import com.dxc.file.config.ConfigProcessor;
 import com.dxc.file.config.Property;
-import com.dxc.file.reader.FileReaderProvider;
-import com.dxc.file.writer.FileWriterProvider;
+import com.dxc.file.reader.Decoder;
+import com.dxc.file.writer.Encoder;
 /**
  * Converter is a class that contains the supported file formats, instances of reader and writer
  * for the needed formats for conversion.
@@ -20,16 +20,16 @@ import com.dxc.file.writer.FileWriterProvider;
  */
 public class Converter {
 	
-	public FileReaderProvider fileReader;
-	public FileWriterProvider fileWriter;
+	public Decoder decoder;
+	public Encoder encoder;
 	/**
 	 * Creates an instance of the converter
 	 * @param fileReader Reader class for the input file
 	 * @param fileWriter Writer class for the output file
 	 */
-	public Converter(FileReaderProvider fileReader, FileWriterProvider fileWriter) {
-		this.fileReader = fileReader;
-		this.fileWriter = fileWriter;
+	public Converter(Decoder decoder, Encoder encoder) {
+		this.decoder = decoder;
+		this.encoder = encoder;
 	}
 	/**
 	 * Method that executes the whole process of converting from one file format to another.
@@ -37,9 +37,14 @@ public class Converter {
 	 * @param inputFilePath path of the input file
 	 * @param outputFilePath path of the output file
 	 */
-	public boolean convert(String inputFilePath, String outputFilePath) {
-		ArrayList<String> readFile = fileReader.readFile(inputFilePath);
-
-		return fileWriter.write(readFile, outputFilePath);
+	public void convert() {
+		String currentUnit = decoder.getUnit();
+		
+		while (currentUnit != "") {
+			encoder.encodeUnit(currentUnit);
+			currentUnit = decoder.getUnit();
+		}
+		
+//		return fileWriter.write(readFile, outputFilePath);
 	}
 }

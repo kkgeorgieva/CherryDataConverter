@@ -14,9 +14,9 @@ import org.junit.jupiter.api.Test;
 import com.dxc.converter.Converter;
 import com.dxc.file.config.ConfigProcessor;
 import com.dxc.file.config.Property;
-import com.dxc.file.reader.CSVFileReader;
+import com.dxc.file.reader.InputReader;
 import com.dxc.file.reader.FileReaderProvider;
-import com.dxc.file.writer.CSVFileWriter;
+import com.dxc.file.writer.OutputWriter;
 import com.dxc.file.writer.FWFileWriter;
 import com.dxc.file.writer.FileWriterProvider;
 import com.dxc.main.app.ConverterApplication;
@@ -43,9 +43,9 @@ public class ConverterTest
     	File inputFile = new File(this.getClass().getResource("Test.csv").getFile());
     	
     	ConfigProcessor.parseConfig(configFile.getAbsolutePath());
-    	CSVFileReader reader = new CSVFileReader(ConfigProcessor.getByCategory(FileReaderProvider.getConfigCategory()));
+    	InputReader reader = new InputReader(ConfigProcessor.getByCategory(FileReaderProvider.getConfigCategory()));
     	
-    	CSVFileWriter writer = new CSVFileWriter(ConfigProcessor.getByCategory(FileWriterProvider.getConfigCategory()));
+    	OutputWriter writer = new OutputWriter(ConfigProcessor.getByCategory(FileWriterProvider.getConfigCategory()));
     	
     	assertTrue(writer.write(reader.readFile(inputFile.getAbsolutePath()), outputFile.getAbsolutePath()));
     }
@@ -57,7 +57,7 @@ public class ConverterTest
     	File inputFile = new File(this.getClass().getResource("Test.csv").getFile());
     	
     	ConfigProcessor.parseConfig(configFile.getAbsolutePath());
-    	CSVFileReader reader = new CSVFileReader(ConfigProcessor.getByCategory(FileReaderProvider.getConfigCategory()));
+    	InputReader reader = new InputReader(ConfigProcessor.getByCategory(FileReaderProvider.getConfigCategory()));
     	
     	FWFileWriter writer = new FWFileWriter(ConfigProcessor.getByCategory(FileWriterProvider.getConfigCategory()));
     	
@@ -71,7 +71,7 @@ public class ConverterTest
     	File inputFile = new File(this.getClass().getResource("Test.csv").getFile());
     	
     	ConfigProcessor.parseConfig(configFile.getAbsolutePath());
-    	CSVFileReader reader = new CSVFileReader(ConfigProcessor.getByCategory(FileReaderProvider.getConfigCategory()));
+    	InputReader reader = new InputReader(ConfigProcessor.getByCategory(FileReaderProvider.getConfigCategory()));
     	
     	assertEquals(3, reader.readFile(inputFile.getAbsolutePath()).size());
     	
@@ -84,7 +84,7 @@ public class ConverterTest
     	File inputFile = new File(this.getClass().getResource("Test.csv").getFile());
     	
     	ConfigProcessor.parseConfig(configFile.getAbsolutePath());
-    	CSVFileReader reader = new CSVFileReader(ConfigProcessor.getByCategory(FileReaderProvider.getConfigCategory()));
+    	InputReader reader = new InputReader(ConfigProcessor.getByCategory(FileReaderProvider.getConfigCategory()));
     	FWFileWriter writer = new FWFileWriter(ConfigProcessor.getByCategory(FileWriterProvider.getConfigCategory()));
     	
     	Converter cvt = new Converter(reader, writer);
