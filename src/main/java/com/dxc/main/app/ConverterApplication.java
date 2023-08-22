@@ -38,33 +38,27 @@ public class ConverterApplication {
 	public static void main(String[] args) throws IOException {
 
 		// Implementation for case with Properties Class
-//		String inputFile = "";
-//		String outputFile = "";
-//		String configFile = "";
-//		String inputFileType = "";
-//		String outputFileType = "";
-//		try {
-//			
-//			if (args.length < 5) {
-//				throw new IllegalArgumentException("ERROR! Make sure you have included all the parameters in the following order:"
-//						+ " inputFilePath, outputFilePath, configFilePath, inputFileType, outputFileType");
-//			}
-//
-//			inputFile = args[0];
-//			outputFile = args[1];
-//			configFile = args[2];
-//			inputFileType = args[3];
-//			outputFileType = args[4];
-//		} catch (Exception e) {
-//			logger.error(e.getStackTrace());
-//			System.out.println(e.getMessage());
-//		}
+		String inputFile = "";
+		String outputFile = "";
+		String configFile = "";
+		String inputFileType = "";
+		String outputFileType = "";
+		try {
+			
+			if (args.length < 5) {
+				throw new IllegalArgumentException("ERROR! Make sure you have included all the parameters in the following order:"
+						+ " inputFilePath, outputFilePath, configFilePath, inputFileType, outputFileType");
+			}
 
-		String inputFile = "C:\\ws\\Test.csv";
-		String outputFile = "C:\\ws\\Output.csv";
-		String configFile = "C:\\ws\\configTemplate.yaml";
-		String inputFileType = "CSV";
-		String outputFileType = "FW";
+			inputFile = args[0];
+			outputFile = args[1];
+			configFile = args[2];
+			inputFileType = args[3];
+			outputFileType = args[4];
+		} catch (Exception e) {
+			logger.error(e.getStackTrace());
+			System.out.println(e.getMessage());
+		}
 
 		ConfigProcessor.parseConfig(configFile);
 
