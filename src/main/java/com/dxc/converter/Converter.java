@@ -19,8 +19,8 @@ public class Converter {
 	/**
 	 * Creates an instance of the converter
 	 * 
-	 * @param fileReader Reader class for the input file
-	 * @param fileWriter Writer class for the output file
+	 * @param Decoder A formatter for the input file
+	 * @param Encoder A formatter for the output file
 	 */
 	public Converter(Decoder decoder, Encoder encoder) {
 		this.decoder = decoder;
@@ -32,8 +32,7 @@ public class Converter {
 	 * another. If the output file does not exists, it creates a new file in the
 	 * user's system and writes to it.
 	 * 
-	 * @param inputFilePath  path of the input file
-	 * @param outputFilePath path of the output file
+	 
 	 */
 	public boolean convert() {
 		String currentUnit = decoder.getUnit();
@@ -53,6 +52,5 @@ public class Converter {
 		System.out.println("Converting successful!");
 		return true;
 
-//		return fileWriter.write(readFile, outputFilePath);
 	}
 }

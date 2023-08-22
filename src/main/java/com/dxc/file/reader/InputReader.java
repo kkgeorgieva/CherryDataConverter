@@ -21,7 +21,7 @@ public class InputReader implements FileReaderInterface {
 
 	/**
 	 * Constructor, which creates a new instance.
-	 * @param config List of configurations, designated for a reader class.
+	 * @param filePath The file path of the input file.
 	 */
 	public InputReader(String filePath) {
 		try {
@@ -33,8 +33,7 @@ public class InputReader implements FileReaderInterface {
 	}
 	/**
 	 * A method that reads data from a file.
-	 * @param filePath file path.
-	 * @return list of file's data; every entry is a new line from the file.
+	 * @return Returns a line from the input file
 	 */
 	@Override
 	public String readLine() {

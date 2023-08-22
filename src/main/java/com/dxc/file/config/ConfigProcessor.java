@@ -24,6 +24,7 @@ public class ConfigProcessor {
 	 */
 	public static List<Property> propertyList;
 	private static Logger logger = LogManager.getLogger(ConfigProcessor.class);
+	
 	/**
 	 * Method that parses the configuration file, recognizes sections and it's related information
 	 * and generates properties based on it.
@@ -58,6 +59,7 @@ public class ConfigProcessor {
         }
 
     }
+	
 	/**
 	 * Method that filters properties by given category and returns them.
 	 * @param categoryString category to filter by

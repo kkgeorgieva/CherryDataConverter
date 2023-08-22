@@ -12,7 +12,7 @@ import com.dxc.converter.Converter;
 import com.dxc.file.config.Property;
 
 /**
- * A file writer class designated for the .csv format.
+ * A file writer class designed to write information to an output file.
  */
 public class OutputWriter implements FileWriterInterface {
 
@@ -20,9 +20,9 @@ public class OutputWriter implements FileWriterInterface {
 	FileWriter fileWriter;
 
 	/**
-	 * Constructor, which creates a new instance.
+	 * A method for creating a new instance of the FileWriter.
 	 * 
-	 * @param config List of configurations, designated for a reader class.
+	 * @param fileName The name of the output file.
 	 * @throws IOException
 	 */
 	public OutputWriter(String fileName) throws IOException {
@@ -30,10 +30,9 @@ public class OutputWriter implements FileWriterInterface {
 	}
 
 	/**
-	 * A method that writes data to a file and formats it in a specific way.
+	 * A method that writes data to a file.
 	 * 
-	 * @param input    data from the input file.
-	 * @param fileName file name.
+	 * @param input  Already processed data from the input file.
 	 */
 	@Override
 	public boolean write(String input) {

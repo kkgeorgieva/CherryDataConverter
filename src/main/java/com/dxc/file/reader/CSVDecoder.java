@@ -7,6 +7,12 @@ import com.dxc.file.config.Property;
 public class CSVDecoder implements Decoder{
 	
 	private FileReaderInterface fileReader;
+	
+	/**
+	 *  A constructor for the CSV Decoder
+	 * @param config List of properties derived from the configuration file
+	 * @param fileReader Filer reader
+	 */
 		
 	public CSVDecoder (List<Property> config, FileReaderInterface fileReader) {
 		this.fileReader = fileReader;
@@ -16,7 +22,9 @@ public class CSVDecoder implements Decoder{
 	public String getNewLine() {
 		return fileReader.readLine();
 	}
-
+	/**
+	 *@return Returns a unit of information
+	 */
 	@Override
 	public String getUnit() {
 		String output = "";

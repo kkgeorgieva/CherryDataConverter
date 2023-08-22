@@ -37,7 +37,7 @@ public class ConverterApplication {
 	 */
 	public static void main(String[] args) throws IOException {
 
-		// Implementation for case with Properties Class
+		
 		String inputFile = "";
 		String outputFile = "";
 		String configFile = "";

@@ -23,6 +23,7 @@ public class FWEncoder implements Encoder {
 	 * Constructor, which creates a new instance.
 	 * 
 	 * @param config List of configurations, designated for a reader class.
+	 * @param writer An instance of the FileWriterInterface.
 	 */
 	public FWEncoder(List<Property> config, FileWriterInterface writer) {
 		this.config = config;
@@ -33,8 +34,7 @@ public class FWEncoder implements Encoder {
 	/**
 	 * A method that writes data to a file and formats it in a specific way.
 	 * 
-	 * @param input    data from the input file.
-	 * @param fileName file name.
+	 *@param unit A string of information, given to the method as a unit.
 	 */
 	public String encodeUnit(String unit) {
 		StringBuilder output = new StringBuilder();
