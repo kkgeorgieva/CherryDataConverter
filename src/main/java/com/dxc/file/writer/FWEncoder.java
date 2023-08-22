@@ -1,8 +1,5 @@
 package com.dxc.file.writer;
 
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,16 +17,16 @@ public class FWEncoder implements Encoder {
 
 	private List<Integer> widths = new ArrayList<>();
 	private List<Property> config;
-	private FileWriterInterface fileWriter;
+	private FileWriterInterface writer;
 
 	/**
 	 * Constructor, which creates a new instance.
 	 * 
 	 * @param config List of configurations, designated for a reader class.
 	 */
-	public FWEncoder(List<Property> config, FileWriterInterface fileWriter) {
+	public FWEncoder(List<Property> config, FileWriterInterface writer) {
 		this.config = config;
-		this.fileWriter = fileWriter;
+		this.writer = writer;
 		getColumnWidths();
 	}
 
@@ -39,7 +36,7 @@ public class FWEncoder implements Encoder {
 	 * @param input    data from the input file.
 	 * @param fileName file name.
 	 */
-	public void encodeUnit(String unit) {
+	public String encodeUnit(String unit) {
 		StringBuilder output = new StringBuilder();
 
 		String[] data = unit.split(",");
@@ -49,12 +46,14 @@ public class FWEncoder implements Encoder {
 			output.append(',');
 
 		}
-		output.append(String.format("%-" + widths.get(data.length - 1) + "s", data[data.length - 1]));
+		output.append(String.format("%-" + widths.get(data.length - 2) + "s", data[data.length - 1]));
 		output.append('\n');
 
 		logger.info("Successfully built the output.");
 		
-		fileWriter.write(output.toString());
+		this.writer.write(output.toString());
+		
+		return output.toString();
 	}
 
 	private void getColumnWidths() {

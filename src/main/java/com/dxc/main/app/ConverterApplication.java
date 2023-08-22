@@ -20,7 +20,7 @@ import com.dxc.file.writer.Encoder;
 import com.dxc.file.writer.FileWriterInterface;
 import com.dxc.file.writer.OutputWriter;
 
-public class ConverterApplication2 {
+public class ConverterApplication {
 	
 	private static Logger logger = LogManager.getLogger(Converter.class);
 	
@@ -41,18 +41,18 @@ public class ConverterApplication2 {
 			
 		}
 
-		// Implementation for case with Properties Class
-//		String inputFile = args[0];
-//		String outputFile = args[1];
-//		String configFile = args[2];
-//		String inputFileType = args[3];
-//		String outputFileType = args[4];
+//		 Implementation for case with Properties Class
+		String inputFile = args[0];
+		String outputFile = args[1];
+		String configFile = args[2];
+		String inputFileType = args[3];
+		String outputFileType = args[4];
 		
-		String inputFile = "C:\\ws\\Test.csv";
-		String outputFile = "C:\\ws\\Output.csv";
-		String configFile = "C:\\ws\\configTemplate.yaml";
-		String inputFileType = "CSV";
-		String outputFileType = "FW";
+//		String inputFile = "C:\\ws\\Test.csv";
+//		String outputFile = "C:\\ws\\Output.csv";
+//		String configFile = "C:\\ws\\configTemplate.yaml";
+//		String inputFileType = "CSV";
+//		String outputFileType = "FW";
 
 		ConfigProcessor.parseConfig(configFile);
 

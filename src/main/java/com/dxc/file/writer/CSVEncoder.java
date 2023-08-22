@@ -13,19 +13,21 @@ public class CSVEncoder implements Encoder {
 	}
 
 	@Override
-	public void encodeUnit(String unit) {
-		String output = "";
+	public String encodeUnit(String unit) {
+		StringBuilder output = new StringBuilder();
 		
 		String[] data = unit.split(",");
 
 		for (int i = 0; i < data.length - 1; i++) {
-			output += data[i];
-			output += ',';
+			output.append(data[i]);
+			output.append(',');
 
 		}
-		output += data[data.length - 1];
-		output += "\n";
+		output.append(data[data.length - 1]);
+		output.append("\n");
 		
-		fileWriter.write(output);
+		fileWriter.write(output.toString());
+		
+		return output.toString();
 	}
 }
