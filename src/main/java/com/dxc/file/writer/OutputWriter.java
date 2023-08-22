@@ -45,7 +45,8 @@ public class OutputWriter implements FileWriterInterface {
 			return true;
 
 		} catch (IOException e) {
-			logger.error(e.getMessage());
+			logger.error(e.getStackTrace());
+			System.out.println(e.getMessage());
 			return false;
 		}
 

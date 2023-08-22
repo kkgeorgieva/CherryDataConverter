@@ -27,8 +27,8 @@ public class InputReader implements FileReaderInterface {
 		try {
 			br = new BufferedReader(new FileReader(filePath));
 		} catch (FileNotFoundException e) {
-			logger.error(e.getMessage());
-			e.printStackTrace();
+			logger.error(e.getStackTrace());
+			System.out.println(e.getMessage());
 		}
 	}
 	/**
@@ -44,8 +44,8 @@ public class InputReader implements FileReaderInterface {
             if ((line = br.readLine()) != null) {
             }
         } catch (IOException e) {
-        	logger.error(e.getMessage());
-            e.printStackTrace();
+        	logger.error(e.getStackTrace());
+			System.out.println(e.getMessage());
         }
         logger.info("Successfully read file and parsed into ArrayList of Strings");       
         return line;

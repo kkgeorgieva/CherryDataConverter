@@ -27,7 +27,7 @@ public class CSVEncoder implements Encoder {
 		output.append("\n");
 		
 		fileWriter.write(output.toString());
-		
+	
 		return output.toString();
 	}
 }

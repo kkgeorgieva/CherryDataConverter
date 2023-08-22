@@ -52,7 +52,8 @@ public class ConfigProcessor {
             propertyList = properties;
             return true;
         } catch (IOException e) {
-            logger.error(e.getMessage());
+            logger.error(e.getStackTrace());
+            System.out.println(e.getMessage());
             return false;
         }
 
@@ -63,7 +64,9 @@ public class ConfigProcessor {
 	 * @return a list of filtered properties
 	 */
 	public static List<Property> getByCategory(String categoryString) {
-		return propertyList.stream().filter(property -> property.getCategory().equals(categoryString)).toList();
+		return propertyList.stream()
+				.filter(property -> property.getCategory().equals(categoryString))
+				.toList();
 	}
 
 }

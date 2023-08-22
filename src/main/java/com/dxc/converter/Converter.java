@@ -39,14 +39,18 @@ public class Converter {
 		String currentUnit = decoder.getUnit();
 
 		try {
+			System.out.println("Converting started...");
 			while (currentUnit != "") {
 				encoder.encodeUnit(currentUnit);
 				currentUnit = decoder.getUnit();
 			}
+			
 		} catch (Exception e) {
+			System.out.println("Converting failed!");
 			return false;
 		}
 
+		System.out.println("Converting successful!");
 		return true;
 
 //		return fileWriter.write(readFile, outputFilePath);
