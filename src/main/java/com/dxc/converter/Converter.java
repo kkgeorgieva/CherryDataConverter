@@ -2,7 +2,7 @@ package com.dxc.converter;
 
 import com.dxc.file.reader.Decoder;
 import com.dxc.file.writer.Encoder;
-import com.dxc.file.writer.FileWriterInterface;
+import com.dxc.file.writer.OutputWriterInterface;
 import com.dxc.file.writer.OutputWriter;
 
 /**

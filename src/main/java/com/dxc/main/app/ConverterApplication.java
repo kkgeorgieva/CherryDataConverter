@@ -15,11 +15,13 @@ import com.dxc.file.config.ConfigProcessor;
 import com.dxc.file.config.Property;
 import com.dxc.file.reader.CSVDecoder;
 import com.dxc.file.reader.Decoder;
-import com.dxc.file.reader.FileReaderInterface;
+import com.dxc.file.reader.InputFactoryInterface;
+import com.dxc.file.reader.InputReaderInterface;
 import com.dxc.file.reader.InputReader;
 import com.dxc.file.writer.CSVEncoder;
 import com.dxc.file.writer.Encoder;
-import com.dxc.file.writer.FileWriterInterface;
+import com.dxc.file.writer.OutputFactoryInterface;
+import com.dxc.file.writer.OutputWriterInterface;
 import com.dxc.file.writer.OutputWriter;
 
 public class ConverterApplication {
@@ -62,35 +64,35 @@ public class ConverterApplication {
 
 		ConfigProcessor.parseConfig(configFile);
 
-		FileReaderInterface reader = new InputReader(inputFile);
-		FileWriterInterface writer = new OutputWriter(outputFile);
+		InputReaderInterface reader = new InputReader(inputFile);
+		OutputWriterInterface writer = new OutputWriter(outputFile);
 
 		Decoder decoder = null;
 		Encoder encoder = null;
-		Class<?> decoderClass;
-		Class<?> encoderClass;
+		Class<?> inputFactoryClass;
+		Class<?> outputFactoryClass;
 		try {
-			decoderClass = Class.forName("com.dxc.file.reader." + inputFileType + "Decoder");
+			inputFactoryClass = Class.forName("com.dxc.file.reader." + inputFileType + "InputFactory");
 			// Get a generic Constructor object for any constructor
-			Constructor<?> decoderConstructor = decoderClass.getConstructor(List.class, FileReaderInterface.class);
+			Constructor<?> inputFactoryConstructor = inputFactoryClass.getConstructor();
 
 			// Get the list of properties from the config processor
 			List<Property> properties = ConfigProcessor.getByCategory(reader.getConfigCategory());
 
 			// Create a new instance of any class with the list of properties
-			decoder = (Decoder) decoderConstructor.newInstance(properties, reader);
+			decoder = ((InputFactoryInterface) inputFactoryConstructor.newInstance()).createFactory(properties, reader).getDecoder();
 
 			logger.info("Created an instance of " + "com.dxc.file.reader." + inputFileType + "Decoder");
 
-			encoderClass = Class.forName("com.dxc.file.writer." + outputFileType + "Encoder");
+			outputFactoryClass = Class.forName("com.dxc.file.writer." + outputFileType + "OutputFactory");
 			// Get a generic Constructor object for any constructor
-			Constructor<?> encoderConstructor = encoderClass.getConstructor(List.class, FileWriterInterface.class);
+			Constructor<?> outputFactoryConstructor = outputFactoryClass.getConstructor();
 
 			// Get the list of properties from the config processor
 			List<Property> propertiesWriter = ConfigProcessor.getByCategory(writer.getConfigCategory());
 
 			// Create a new instance of any class with the list of properties
-			encoder = (Encoder) encoderConstructor.newInstance(propertiesWriter, writer);
+			encoder = ((OutputFactoryInterface) outputFactoryConstructor.newInstance()).createFactory(propertiesWriter, writer).getEncoder();
 
 			logger.info("Created an instance of " + "com.dxc.file.writer." + outputFileType + "FileWriter");
 		} catch (ClassNotFoundException | NoSuchMethodException | SecurityException | InstantiationException

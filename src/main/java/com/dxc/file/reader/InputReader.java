@@ -13,7 +13,7 @@ import com.dxc.file.config.Property;
 /**
  * A file reader class designated for the .csv format.
  */
-public class InputReader implements FileReaderInterface {
+public class InputReader implements InputReaderInterface {
 	
 	private static Logger logger = LogManager.getLogger(InputReader.class);
 	

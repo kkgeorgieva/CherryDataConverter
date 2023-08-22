@@ -14,7 +14,7 @@ import com.dxc.file.config.Property;
 /**
  * A file writer class designed to write information to an output file.
  */
-public class OutputWriter implements FileWriterInterface {
+public class OutputWriter implements OutputWriterInterface {
 
 	private static Logger logger = LogManager.getLogger(OutputWriter.class);
 	FileWriter fileWriter;

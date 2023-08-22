@@ -11,7 +11,7 @@ import com.dxc.file.config.Property;
 
 public class CSVEncoder implements Encoder {
 	
-	private FileWriterInterface fileWriter;
+	private OutputWriterInterface fileWriter;
 	
 	/**
 	 * A constructor for the CSVEncoder class.
@@ -19,7 +19,7 @@ public class CSVEncoder implements Encoder {
 	 * @fileWriter Instance of the FileWriter interface.
 	 */
 	
-	public CSVEncoder(List<Property> config, FileWriterInterface fileWriter) {
+	public CSVEncoder(List<Property> config, OutputWriterInterface fileWriter) {
 		this.fileWriter = fileWriter;
 	}
 	/**

@@ -6,7 +6,7 @@ import com.dxc.file.config.Property;
 
 public class CSVDecoder implements Decoder{
 	
-	private FileReaderInterface fileReader;
+	private InputReaderInterface fileReader;
 	
 	/**
 	 *  A constructor for the CSV Decoder
@@ -14,7 +14,7 @@ public class CSVDecoder implements Decoder{
 	 * @param fileReader Filer reader
 	 */
 		
-	public CSVDecoder (List<Property> config, FileReaderInterface fileReader) {
+	public CSVDecoder (List<Property> config, InputReaderInterface fileReader) {
 		this.fileReader = fileReader;
 	}
 

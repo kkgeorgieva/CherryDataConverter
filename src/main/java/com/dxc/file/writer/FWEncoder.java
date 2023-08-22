@@ -17,7 +17,7 @@ public class FWEncoder implements Encoder {
 
 	private List<Integer> widths = new ArrayList<>();
 	private List<Property> config;
-	private FileWriterInterface writer;
+	private OutputWriterInterface writer;
 
 	/**
 	 * Constructor, which creates a new instance.
@@ -25,7 +25,7 @@ public class FWEncoder implements Encoder {
 	 * @param config List of configurations, designated for a reader class.
 	 * @param writer An instance of the FileWriterInterface.
 	 */
-	public FWEncoder(List<Property> config, FileWriterInterface writer) {
+	public FWEncoder(List<Property> config, OutputWriterInterface writer) {
 		this.config = config;
 		this.writer = writer;
 		getColumnWidths();
