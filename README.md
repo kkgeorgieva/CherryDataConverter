@@ -11,9 +11,9 @@ java -jar target\CherryDataConvert-1.0-SNAPSHOT.jar pathToInputFile pathToOutput
 The configuration file must adhere to the configTemplate.yaml inside the project. The structure is as follows:
 
     input:   
-     parameter1   
+     parameter1 : value1  
     output:  
-     parameter2  
+     parameter2 : value2
  
 Each section can have multiple parameters and multiple subsections. The input configuration is passed to the Reader classes, while the output configuration is passed to the Writer classes. There are no mandatory parameters that must be included, and the default configuration file just has an empty input and output section. Handling of the parameters is done inside each Reader and Writer class. 
 
