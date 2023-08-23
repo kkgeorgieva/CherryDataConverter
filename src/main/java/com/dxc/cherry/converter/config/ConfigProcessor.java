@@ -1,4 +1,4 @@
-package com.dxc.file.config;
+package com.dxc.cherry.converter.config;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -11,7 +11,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.yaml.snakeyaml.Yaml;
 
-import com.dxc.converter.Converter;
+import com.dxc.cherry.converter.Converter;
 
 /**
  * ConfigProcessor is a class, that handles processing a configuration file's data

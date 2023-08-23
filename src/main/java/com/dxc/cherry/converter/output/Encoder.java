@@ -1,4 +1,4 @@
-package com.dxc.file.writer;
+package com.dxc.cherry.converter.output;
 /**
  * A class that is in charge of processing information given to it and encodes it as a unit
  */

@@ -1,4 +1,4 @@
-package com.dxc.file.config;
+package com.dxc.cherry.converter.config;
 
 /**
  * Property is an object which contains key-value-pair of information and a category.

@@ -1,4 +1,4 @@
-package com.dxc.file.reader;
+package com.dxc.cherry.converter.input;
 /**
  * An interface that is in charge of decoding the input file
  */

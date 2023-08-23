@@ -1,4 +1,4 @@
-package com.dxc.main.app;
+package com.dxc.cherry.converter;
 
 import java.io.IOException;
 import java.lang.reflect.Constructor;
@@ -10,19 +10,18 @@ import javax.naming.directory.InvalidAttributesException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.dxc.converter.Converter;
-import com.dxc.file.config.ConfigProcessor;
-import com.dxc.file.config.Property;
-import com.dxc.file.reader.CSVDecoder;
-import com.dxc.file.reader.Decoder;
-import com.dxc.file.reader.InputFactoryInterface;
-import com.dxc.file.reader.InputReaderInterface;
-import com.dxc.file.reader.InputReader;
-import com.dxc.file.writer.CSVEncoder;
-import com.dxc.file.writer.Encoder;
-import com.dxc.file.writer.OutputFactoryInterface;
-import com.dxc.file.writer.OutputWriterInterface;
-import com.dxc.file.writer.OutputWriter;
+import com.dxc.cherry.converter.config.ConfigProcessor;
+import com.dxc.cherry.converter.config.Property;
+import com.dxc.cherry.converter.input.CSVDecoder;
+import com.dxc.cherry.converter.input.Decoder;
+import com.dxc.cherry.converter.input.InputFactoryInterface;
+import com.dxc.cherry.converter.input.InputReader;
+import com.dxc.cherry.converter.input.InputReaderInterface;
+import com.dxc.cherry.converter.output.CSVEncoder;
+import com.dxc.cherry.converter.output.Encoder;
+import com.dxc.cherry.converter.output.OutputFactoryInterface;
+import com.dxc.cherry.converter.output.OutputWriter;
+import com.dxc.cherry.converter.output.OutputWriterInterface;
 
 public class ConverterApplication {
 

@@ -1,8 +1,8 @@
-package com.dxc.file.writer;
+package com.dxc.cherry.converter.output;
 
 import java.util.List;
 
-import com.dxc.file.config.Property;
+import com.dxc.cherry.converter.config.Property;
 
 public class CSVOutputFactory implements OutputFactoryInterface {
 

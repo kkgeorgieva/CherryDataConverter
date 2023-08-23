@@ -1,4 +1,4 @@
-package com.dxc;
+package com.dxc.cherry.converter.test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -9,17 +9,17 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import com.dxc.converter.Converter;
-import com.dxc.file.config.ConfigProcessor;
-import com.dxc.file.config.Property;
-import com.dxc.file.reader.InputReader;
-import com.dxc.file.reader.CSVDecoder;
-import com.dxc.file.reader.Decoder;
-import com.dxc.file.writer.OutputWriter;
-import com.dxc.main.app.ConverterApplication;
-import com.dxc.file.writer.CSVEncoder;
-import com.dxc.file.writer.Encoder;
-import com.dxc.file.writer.FWEncoder;
+import com.dxc.cherry.converter.Converter;
+import com.dxc.cherry.converter.ConverterApplication;
+import com.dxc.cherry.converter.config.ConfigProcessor;
+import com.dxc.cherry.converter.config.Property;
+import com.dxc.cherry.converter.input.CSVDecoder;
+import com.dxc.cherry.converter.input.Decoder;
+import com.dxc.cherry.converter.input.InputReader;
+import com.dxc.cherry.converter.output.CSVEncoder;
+import com.dxc.cherry.converter.output.Encoder;
+import com.dxc.cherry.converter.output.FWEncoder;
+import com.dxc.cherry.converter.output.OutputWriter;
 
 public class ConverterTest {
 

@@ -1,4 +1,4 @@
-package com.dxc.file.writer;
+package com.dxc.cherry.converter.output;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,7 +6,7 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.dxc.file.config.Property;
+import com.dxc.cherry.converter.config.Property;
 
 /**
  * A file writer class designated for the fixed-width file format.

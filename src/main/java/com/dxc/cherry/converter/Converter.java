@@ -1,9 +1,9 @@
-package com.dxc.converter;
+package com.dxc.cherry.converter;
 
-import com.dxc.file.reader.Decoder;
-import com.dxc.file.writer.Encoder;
-import com.dxc.file.writer.OutputWriterInterface;
-import com.dxc.file.writer.OutputWriter;
+import com.dxc.cherry.converter.input.Decoder;
+import com.dxc.cherry.converter.output.Encoder;
+import com.dxc.cherry.converter.output.OutputWriter;
+import com.dxc.cherry.converter.output.OutputWriterInterface;
 
 /**
  * Converter is a class that contains the supported file formats, instances of

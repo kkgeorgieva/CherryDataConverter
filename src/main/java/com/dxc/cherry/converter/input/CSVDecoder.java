@@ -1,8 +1,8 @@
-package com.dxc.file.reader;
+package com.dxc.cherry.converter.input;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.dxc.file.config.Property;
+import com.dxc.cherry.converter.config.Property;
 
 public class CSVDecoder implements Decoder{
 	
