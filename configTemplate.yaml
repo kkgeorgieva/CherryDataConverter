@@ -1,9 +1,4 @@
-input:
- file: input.csv
-
-output:
- file: output.csv
- columnWidths: 
- - 20
- - 50
- - 10
+input:   
+ parameter1 : value1   
+output:  
+ parameter2 : value2
