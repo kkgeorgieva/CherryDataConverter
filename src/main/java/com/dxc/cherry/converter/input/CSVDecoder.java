@@ -27,16 +27,19 @@ public class CSVDecoder implements Decoder{
 	 */
 	@Override
 	public String getUnit() {
-		String output = "";
-		String currentLine = getNewLine();
-		if (currentLine != null) {
-			output += currentLine;
-		}
-		while (currentLine != null && currentLine.charAt(currentLine.length() - 1) == ',') {
-			currentLine = getNewLine();
-			output += currentLine;
-		} 
-		return output;
+	    StringBuilder output = new StringBuilder();
+	    String currentLine = getNewLine();
+	    
+	    if (currentLine != null) {
+	        output.append(currentLine);
+	    }
+	    
+	    while (currentLine != null && currentLine.charAt(currentLine.length() - 1) == ',') {
+	        currentLine = getNewLine();
+	        output.append(currentLine);
+	    }
+	    
+	    return output.toString();
 	}
 
 }

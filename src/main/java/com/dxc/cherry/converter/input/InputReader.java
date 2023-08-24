@@ -40,8 +40,7 @@ public class InputReader implements InputReaderInterface {
 
         String line = null;
         try {
-            if ((line = br.readLine()) != null) {
-            }
+            line = br.readLine();
         } catch (IOException e) {
         	logger.error(e.getStackTrace());
 			System.out.println(e.getMessage());

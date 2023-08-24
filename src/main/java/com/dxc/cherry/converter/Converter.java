@@ -35,22 +35,22 @@ public class Converter {
 	 
 	 */
 	public boolean convert() {
-		String currentUnit = decoder.getUnit();
+		    try {
+		        System.out.println("Converting started...");
+		        String currentUnit;
 
-		try {
-			System.out.println("Converting started...");
-			while (currentUnit != "") {
-				encoder.encodeUnit(currentUnit);
-				currentUnit = decoder.getUnit();
-			}
-			
-		} catch (Exception e) {
-			System.out.println("Converting failed!");
-			return false;
-		}
+		        do {
+		            currentUnit = decoder.getUnit();
+		            if (currentUnit != null && !currentUnit.isEmpty()) {
+		                encoder.encodeUnit(currentUnit);
+		            }
+		        } while (currentUnit != null && !currentUnit.isEmpty());
+		    } catch (Exception e) {
+		        System.out.println("Converting failed!");
+		        return false;
+		    }
 
-		System.out.println("Converting successful!");
-		return true;
-
+		    System.out.println("Converting successful!");
+		    return true;
 	}
 }
