@@ -75,7 +75,7 @@ public class ConfigProcessor implements AutoCloseable {
 	 * @return a list of filtered properties
 	 */
 	public static List<Property> getByCategory(String categoryString) {
-		return propertyList.stream().filter(property -> property.getCategory().equals(categoryString)).toList();
+		return propertyList.stream().filter(property -> property.category().equals(categoryString)).toList();
 	}
 
 	@Override

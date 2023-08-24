@@ -71,7 +71,7 @@ public class ConverterApplication {
 		Class<?> inputFactoryClass;
 		Class<?> outputFactoryClass;
 		try {
-			inputFactoryClass = Class.forName("com.dxc.file.reader." + inputFileType + "InputFactory");
+			inputFactoryClass = Class.forName("com.dxc.cherry.converter.input." + inputFileType + "InputFactory");
 			// Get a generic Constructor object for any constructor
 			Constructor<?> inputFactoryConstructor = inputFactoryClass.getConstructor();
 
@@ -81,9 +81,9 @@ public class ConverterApplication {
 			// Create a new instance of any class with the list of properties
 			decoder = ((InputFactoryInterface) inputFactoryConstructor.newInstance()).createFactory(properties, reader).getDecoder();
 
-			logger.info("Created an instance of " + "com.dxc.file.reader." + inputFileType + "Decoder");
+			logger.info("Created an instance of " + "com.dxc.cherry.converter.input." + inputFileType + "Decoder");
 
-			outputFactoryClass = Class.forName("com.dxc.file.writer." + outputFileType + "OutputFactory");
+			outputFactoryClass = Class.forName("com.dxc.cherry.converter.output." + outputFileType + "OutputFactory");
 			// Get a generic Constructor object for any constructor
 			Constructor<?> outputFactoryConstructor = outputFactoryClass.getConstructor();
 
@@ -93,10 +93,10 @@ public class ConverterApplication {
 			// Create a new instance of any class with the list of properties
 			encoder = ((OutputFactoryInterface) outputFactoryConstructor.newInstance()).createFactory(propertiesWriter, writer).getEncoder();
 
-			logger.info("Created an instance of " + "com.dxc.file.writer." + outputFileType + "FileWriter");
+			logger.info("Created an instance of " + "com.dxc.cherry.converter.output." + outputFileType + "FileWriter");
 		} catch (ClassNotFoundException | NoSuchMethodException | SecurityException | InstantiationException
 				| IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
-			logger.error(e.getStackTrace());
+			logger.error(e);
 			System.out.println(e.getMessage());
 		}
 

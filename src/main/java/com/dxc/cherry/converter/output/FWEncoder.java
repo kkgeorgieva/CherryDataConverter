@@ -57,8 +57,8 @@ public class FWEncoder implements Encoder {
 	}
 
 	private void getColumnWidths() {
-		String widths = config.stream().filter(property -> property.getKey().equals("columnWidths")).findFirst().get()
-				.getValue();
+		String widths = config.stream().filter(property -> property.key().equals("columnWidths")).findFirst().get()
+				.value();
 
 		String[] arr = widths.replace("[", "").replace("]", "").split(",\\s+");
 
