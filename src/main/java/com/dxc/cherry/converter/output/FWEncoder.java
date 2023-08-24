@@ -43,7 +43,7 @@ public class FWEncoder implements Encoder {
 
 		for (int i = 0; i < data.length - 1; i++) {
 			output.append(String.format("%-" + widths.get(i) + "s", data[i]));
-			output.append(',');
+//			output.append(',');
 
 		}
 		output.append(String.format("%-" + widths.get(data.length - 2) + "s", data[data.length - 1]));

@@ -55,4 +55,14 @@ public class OutputWriter implements OutputWriterInterface {
 	public String getConfigCategory() {
 		return "output";
 	}
+
+	@Override
+	public void closeResource() {
+		try {
+			fileWriter.close();
+		} catch (IOException e) {
+			logger.error(e);
+			System.out.println("Error closing the output writer!");
+		}
+	}
 }

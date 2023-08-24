@@ -5,5 +5,5 @@ package com.dxc.cherry.converter.input;
 public interface InputReaderInterface {
 	public String readLine();
 	public String getConfigCategory();
-
+	public void closeResource();
 }

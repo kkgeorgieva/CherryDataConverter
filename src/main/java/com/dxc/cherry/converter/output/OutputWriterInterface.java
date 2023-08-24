@@ -8,5 +8,5 @@ public interface OutputWriterInterface {
 	
 	boolean write(String input);
 	public String getConfigCategory();
-
+	public void closeResource();
 }

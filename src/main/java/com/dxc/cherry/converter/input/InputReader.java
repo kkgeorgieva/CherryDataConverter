@@ -52,4 +52,14 @@ public class InputReader implements InputReaderInterface {
 	public String getConfigCategory() {
 		return "input";
 	}
+	
+	@Override
+	public void closeResource() {
+		try {
+			br.close();
+		} catch (IOException e) {
+			logger.error(e);
+			System.out.println("Error closing the input reader!");
+		}
+	}
 }

@@ -104,6 +104,9 @@ public class ConverterApplication {
 
 
 		cvt.convert();
+		
+		reader.closeResource();
+		writer.closeResource();
 	}
 
 }
