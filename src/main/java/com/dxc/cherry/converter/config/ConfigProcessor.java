@@ -15,7 +15,7 @@ import org.yaml.snakeyaml.Yaml;
  * data and separates it into property key-value-pairs.
  */
 
-public class ConfigProcessor {
+public class ConfigProcessor implements AutoCloseable {
 	/**
 	 * A list containing the generated properties.
 	 */
@@ -46,7 +46,6 @@ public class ConfigProcessor {
 			System.out.println(e.getMessage());
 			return false;
 		}
-
 	}
 
 	private static void extractPropertiesFromConfigMap(List<Property> properties, Map<String, Object> configMap) {
@@ -77,6 +76,12 @@ public class ConfigProcessor {
 	 */
 	public static List<Property> getByCategory(String categoryString) {
 		return propertyList.stream().filter(property -> property.getCategory().equals(categoryString)).toList();
+	}
+
+	@Override
+	public void close() throws Exception {
+		logger.info("Closing the FileStream in ConfigProcessor");
+		
 	}
 
 }
