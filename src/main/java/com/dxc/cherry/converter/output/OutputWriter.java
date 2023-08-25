@@ -19,14 +19,15 @@ public class OutputWriter implements OutputWriterInterface {
 	private static Logger logger = LogManager.getLogger(OutputWriter.class);
 	FileWriter fileWriter;
 
+	private String filePath;
 	/**
 	 * A method for creating a new instance of the FileWriter.
 	 * 
 	 * @param fileName The name of the output file.
 	 * @throws IOException
 	 */
-	public OutputWriter(String fileName) throws IOException {
-		fileWriter = new FileWriter(fileName);
+	public OutputWriter(String filePath) {
+		this.filePath = filePath;
 	}
 
 	/**
@@ -37,10 +38,13 @@ public class OutputWriter implements OutputWriterInterface {
 	@Override
 	public boolean write(String input) {
 		try {
+			fileWriter = new FileWriter(filePath);
 			fileWriter.write(input);
 			fileWriter.flush();
 
 			logger.info("Successfully written to a file.");
+			
+			fileWriter.close();
 			return true;
 
 		} catch (IOException e) {
@@ -54,15 +58,5 @@ public class OutputWriter implements OutputWriterInterface {
 	@Override
 	public String getConfigCategory() {
 		return "output";
-	}
-
-	@Override
-	public void closeResource() {
-		try {
-			fileWriter.close();
-		} catch (IOException e) {
-			logger.error(e);
-			System.out.println("Error closing the output writer!");
-		}
 	}
 }

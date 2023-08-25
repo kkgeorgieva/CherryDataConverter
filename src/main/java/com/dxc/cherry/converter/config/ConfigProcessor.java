@@ -29,7 +29,7 @@ public class ConfigProcessor implements AutoCloseable {
 	 * @param configFile file containing information needed for converting from one
 	 *                   file format to another
 	 */
-	public static boolean parseConfig(String configFile) {
+	public static List<Property> parseConfig(String configFile) {
 		List<Property> properties = new ArrayList<>();
 
 		try (FileInputStream inputStream = new FileInputStream(configFile)) {
@@ -39,13 +39,13 @@ public class ConfigProcessor implements AutoCloseable {
 
 			extractPropertiesFromConfigMap(properties, configMap);
 			propertyList = properties;
-			return true;
 
 		} catch (IOException e) {
 			logger.error(e.getStackTrace());
 			System.out.println(e.getMessage());
-			return false;
 		}
+		
+		return properties;
 	}
 
 	private static void extractPropertiesFromConfigMap(List<Property> properties, Map<String, Object> configMap) {

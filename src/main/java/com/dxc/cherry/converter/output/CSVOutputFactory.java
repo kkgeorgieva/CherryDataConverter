@@ -21,4 +21,9 @@ public class CSVOutputFactory implements EncoderFactory {
 		return new CSVEncoder(config, writer);
 	}
 
+	@Override
+	public String getFortmat() {
+		return "CSV";
+	}
+
 }

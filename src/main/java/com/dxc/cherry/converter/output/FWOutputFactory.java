@@ -21,4 +21,9 @@ public class FWOutputFactory implements EncoderFactory {
 		return new FWEncoder(config, writer);
 	}
 
+	@Override
+	public String getFortmat() {
+		return "FW";
+	}
+
 }

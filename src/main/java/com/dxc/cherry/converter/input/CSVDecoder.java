@@ -20,7 +20,11 @@ public class CSVDecoder implements Decoder{
 
 	@Override
 	public String getNewLine() {
-		return fileReader.readLine();
+		String line = null;
+		if ((line = fileReader.readLine()) == null) {
+			fileReader.closeResource();
+		}
+		return line;
 	}
 	/**
 	 *@return Returns a unit of information

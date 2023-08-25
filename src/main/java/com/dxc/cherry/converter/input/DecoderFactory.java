@@ -10,6 +10,6 @@ public interface DecoderFactory {
 	public DecoderFactory createFactory(List<Property> config, InputReaderInterface reader);
 	public Decoder getDecoder(); //getInstance();
 	
-	//getFortmat() -> to understand what type of input is being used
+	public String getFormat();// -> to understand what type of input is being used
 	// getConfigSection()? mai go imame ama nz kude
 }

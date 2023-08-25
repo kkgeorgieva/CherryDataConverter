@@ -21,4 +21,9 @@ public class CSVInputFactory implements DecoderFactory {
 		return new CSVDecoder(config, reader);
 	}
 
+	@Override
+	public String getFormat() {
+		return "CSV";
+	}
+
 }

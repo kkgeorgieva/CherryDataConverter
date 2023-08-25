@@ -1,31 +1,17 @@
 package com.dxc.cherry.converter;
 
 import java.io.IOException;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
-import java.util.List;
 
-import javax.naming.directory.InvalidAttributesException;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.dxc.cherry.converter.config.ConfigProcessor;
-import com.dxc.cherry.converter.config.Property;
-import com.dxc.cherry.converter.input.CSVDecoder;
-import com.dxc.cherry.converter.input.Decoder;
-import com.dxc.cherry.converter.input.DecoderFactory;
-import com.dxc.cherry.converter.input.InputReader;
-import com.dxc.cherry.converter.input.InputReaderInterface;
-import com.dxc.cherry.converter.output.CSVEncoder;
-import com.dxc.cherry.converter.output.Encoder;
-import com.dxc.cherry.converter.output.EncoderFactory;
-import com.dxc.cherry.converter.output.OutputWriter;
-import com.dxc.cherry.converter.output.OutputWriterInterface;
+
 
 public class ConverterApplication {
 
-	private static Logger logger = LogManager.getLogger(Converter.class);
+	private static Logger logger = LogManager.getLogger(ConverterApplication.class);
 
 	/**
 	 * Starting point of the program. Creates instances of the needed reader and
@@ -61,52 +47,11 @@ public class ConverterApplication {
 			System.out.println(e.getMessage());
 		}
 
-		ConfigProcessor.parseConfig(configFile);
+		var config = ConfigProcessor.parseConfig(configFile);
 
-		InputReaderInterface reader = new InputReader(inputFile);
-		OutputWriterInterface writer = new OutputWriter(outputFile);
-
-		Decoder decoder = null;
-		Encoder encoder = null;
-		Class<?> inputFactoryClass;
-		Class<?> outputFactoryClass;
-		try {
-			inputFactoryClass = Class.forName("com.dxc.cherry.converter.input." + inputFileType + "InputFactory");
-			// Get a generic Constructor object for any constructor
-			Constructor<?> inputFactoryConstructor = inputFactoryClass.getConstructor();
-
-			// Get the list of properties from the config processor
-			List<Property> properties = ConfigProcessor.getByCategory(reader.getConfigCategory());
-
-			// Create a new instance of any class with the list of properties
-			decoder = ((DecoderFactory) inputFactoryConstructor.newInstance()).createFactory(properties, reader).getDecoder();
-
-			logger.info("Created an instance of " + "com.dxc.cherry.converter.input." + inputFileType + "Decoder");
-
-			outputFactoryClass = Class.forName("com.dxc.cherry.converter.output." + outputFileType + "OutputFactory");
-			// Get a generic Constructor object for any constructor
-			Constructor<?> outputFactoryConstructor = outputFactoryClass.getConstructor();
-
-			// Get the list of properties from the config processor
-			List<Property> propertiesWriter = ConfigProcessor.getByCategory(writer.getConfigCategory());
-
-			// Create a new instance of any class with the list of properties
-			encoder = ((EncoderFactory) outputFactoryConstructor.newInstance()).createFactory(propertiesWriter, writer).getEncoder();
-
-			logger.info("Created an instance of " + "com.dxc.cherry.converter.output." + outputFileType + "FileWriter");
-		} catch (ClassNotFoundException | NoSuchMethodException | SecurityException | InstantiationException
-				| IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
-			logger.error(e);
-			System.out.println(e.getMessage());
-		}
-
-		Converter cvt = new Converter(decoder, encoder);
-
-
-		cvt.convert();
+		TheBestConverter theBestConverter = new TheBestConverter(config, inputFile, outputFile);
 		
-		reader.closeResource();
-		writer.closeResource();
+		theBestConverter.Convert(inputFileType, outputFileType);
 	}
 
 }

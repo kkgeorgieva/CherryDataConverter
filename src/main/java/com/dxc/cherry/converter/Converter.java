@@ -1,5 +1,8 @@
 package com.dxc.cherry.converter;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.dxc.cherry.converter.input.Decoder;
 import com.dxc.cherry.converter.output.Encoder;
 import com.dxc.cherry.converter.output.OutputWriter;
@@ -12,6 +15,8 @@ import com.dxc.cherry.converter.output.OutputWriterInterface;
  * possible.
  */
 public class Converter {
+	
+	private static Logger logger = LogManager.getLogger(Converter.class);
 
 	public Decoder decoder;
 	public Encoder encoder;
@@ -47,6 +52,7 @@ public class Converter {
 		        } while (currentUnit != null && !currentUnit.isEmpty());
 		    } catch (Exception e) {
 		        System.out.println("Converting failed!");
+		        logger.error(e);
 		        return false;
 		    }
 

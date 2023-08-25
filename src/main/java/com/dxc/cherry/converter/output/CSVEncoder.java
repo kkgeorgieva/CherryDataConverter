@@ -29,6 +29,7 @@ public class CSVEncoder implements Encoder {
 	 */
 	@Override
 	public String encodeUnit(String unit) {
+		
 		StringBuilder output = new StringBuilder();
 		
 		String[] data = unit.split(",");
