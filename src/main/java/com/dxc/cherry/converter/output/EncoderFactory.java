@@ -6,7 +6,7 @@ import com.dxc.cherry.converter.config.Property;
 import com.dxc.cherry.converter.output.Encoder;
 import com.dxc.cherry.converter.output.OutputWriterInterface;
 
-public interface OutputFactoryInterface {
-	public OutputFactoryInterface createFactory(List<Property> config, OutputWriterInterface writer);
+public interface EncoderFactory {
+	public EncoderFactory createFactory(List<Property> config, OutputWriterInterface writer);
 	public Encoder getEncoder();
 }

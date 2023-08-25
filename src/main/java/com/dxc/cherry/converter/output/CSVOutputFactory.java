@@ -4,13 +4,13 @@ import java.util.List;
 
 import com.dxc.cherry.converter.config.Property;
 
-public class CSVOutputFactory implements OutputFactoryInterface {
+public class CSVOutputFactory implements EncoderFactory {
 
 	private List<Property> config;
 	private OutputWriterInterface writer;
 	
 	@Override
-	public OutputFactoryInterface createFactory(List<Property> config, OutputWriterInterface writer) {
+	public EncoderFactory createFactory(List<Property> config, OutputWriterInterface writer) {
 		this.config = config;
 		this.writer = writer;
 		return this;

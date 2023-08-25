@@ -1,6 +1,7 @@
 package com.dxc.cherry.converter;
 
-public class TheBestConverter {
+public class TheBestConverter { 
+	
 	//map with decoder factories
 	//map with encoder factories
 	//map with input/reader factories

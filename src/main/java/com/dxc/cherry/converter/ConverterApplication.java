@@ -14,12 +14,12 @@ import com.dxc.cherry.converter.config.ConfigProcessor;
 import com.dxc.cherry.converter.config.Property;
 import com.dxc.cherry.converter.input.CSVDecoder;
 import com.dxc.cherry.converter.input.Decoder;
-import com.dxc.cherry.converter.input.InputFactoryInterface;
+import com.dxc.cherry.converter.input.DecoderFactory;
 import com.dxc.cherry.converter.input.InputReader;
 import com.dxc.cherry.converter.input.InputReaderInterface;
 import com.dxc.cherry.converter.output.CSVEncoder;
 import com.dxc.cherry.converter.output.Encoder;
-import com.dxc.cherry.converter.output.OutputFactoryInterface;
+import com.dxc.cherry.converter.output.EncoderFactory;
 import com.dxc.cherry.converter.output.OutputWriter;
 import com.dxc.cherry.converter.output.OutputWriterInterface;
 
@@ -79,7 +79,7 @@ public class ConverterApplication {
 			List<Property> properties = ConfigProcessor.getByCategory(reader.getConfigCategory());
 
 			// Create a new instance of any class with the list of properties
-			decoder = ((InputFactoryInterface) inputFactoryConstructor.newInstance()).createFactory(properties, reader).getDecoder();
+			decoder = ((DecoderFactory) inputFactoryConstructor.newInstance()).createFactory(properties, reader).getDecoder();
 
 			logger.info("Created an instance of " + "com.dxc.cherry.converter.input." + inputFileType + "Decoder");
 
@@ -91,7 +91,7 @@ public class ConverterApplication {
 			List<Property> propertiesWriter = ConfigProcessor.getByCategory(writer.getConfigCategory());
 
 			// Create a new instance of any class with the list of properties
-			encoder = ((OutputFactoryInterface) outputFactoryConstructor.newInstance()).createFactory(propertiesWriter, writer).getEncoder();
+			encoder = ((EncoderFactory) outputFactoryConstructor.newInstance()).createFactory(propertiesWriter, writer).getEncoder();
 
 			logger.info("Created an instance of " + "com.dxc.cherry.converter.output." + outputFileType + "FileWriter");
 		} catch (ClassNotFoundException | NoSuchMethodException | SecurityException | InstantiationException

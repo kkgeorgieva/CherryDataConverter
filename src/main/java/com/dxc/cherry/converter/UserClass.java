@@ -2,6 +2,7 @@ package com.dxc.cherry.converter;
 
 public class UserClass {
 	
+	
 	//Creating an instance of a new decoder factory
 	
 	//NewDecoderFactory customDecoderFactory = new NewDecoderFactory();
