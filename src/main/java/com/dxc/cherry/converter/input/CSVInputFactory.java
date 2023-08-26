@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.dxc.cherry.converter.config.Property;
 
-public class CSVInputFactory implements DecoderFactory {
+public final class CSVInputFactory implements DecoderFactory {
 
 	private List<Property> config;
 	private InputReaderInterface reader;

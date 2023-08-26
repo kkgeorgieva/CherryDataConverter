@@ -1,10 +1,6 @@
 package com.dxc.cherry.converter.output;
 
-import com.dxc.cherry.converter.input.InputReader;
-import com.dxc.cherry.converter.input.InputReaderFactory;
-import com.dxc.cherry.converter.input.InputReaderInterface;
-
-public class FileOutputFactory implements OutputWriterFactory {
+public final class FileOutputFactory implements OutputWriterFactory {
 	
 	private OutputWriterInterface writer;
 	

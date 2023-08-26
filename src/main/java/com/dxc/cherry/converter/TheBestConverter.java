@@ -10,21 +10,19 @@ import com.dxc.cherry.converter.input.Decoder;
 import com.dxc.cherry.converter.input.DecoderFactory;
 import com.dxc.cherry.converter.input.FileInputFactory;
 import com.dxc.cherry.converter.input.InputReaderFactory;
-import com.dxc.cherry.converter.input.InputReaderInterface;
 import com.dxc.cherry.converter.output.CSVOutputFactory;
 import com.dxc.cherry.converter.output.Encoder;
 import com.dxc.cherry.converter.output.EncoderFactory;
 import com.dxc.cherry.converter.output.FileOutputFactory;
 import com.dxc.cherry.converter.output.OutputWriterFactory;
-import com.dxc.cherry.converter.output.OutputWriterInterface;
 
-public class TheBestConverter { 
+public final class TheBestConverter { 
 	
 	
-	Map<String, DecoderFactory> decoderFactories = new HashMap<>();
-	Map<String, EncoderFactory> encoderFactories = new HashMap<>();
-	Map<String, InputReaderFactory> inputFactories = new HashMap<>();
-	Map<String, OutputWriterFactory> outputFactories = new HashMap<>();
+	private Map<String, DecoderFactory> decoderFactories = new HashMap<>();
+	private Map<String, EncoderFactory> encoderFactories = new HashMap<>();
+	private Map<String, InputReaderFactory> inputFactories = new HashMap<>();
+	private Map<String, OutputWriterFactory> outputFactories = new HashMap<>();
 	
 	public TheBestConverter(List<Property> config, String inputFile, String outputFile) {
 		addInputFactory("File", new FileInputFactory().createFactory(new String[] {inputFile}));

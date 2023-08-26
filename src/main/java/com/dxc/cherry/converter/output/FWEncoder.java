@@ -11,9 +11,9 @@ import com.dxc.cherry.converter.config.Property;
 /**
  * A file writer class designated for the fixed-width file format.
  */
-public class FWEncoder implements Encoder {
+public final class FWEncoder implements Encoder {
 
-	Logger logger = LogManager.getLogger(FWEncoder.class);
+	private static Logger logger = LogManager.getLogger(FWEncoder.class);
 
 	private List<Integer> widths = new ArrayList<>();
 	private List<Property> config;
@@ -36,7 +36,7 @@ public class FWEncoder implements Encoder {
 	 * 
 	 *@param unit A string of information, given to the method as a unit.
 	 */
-	public String encodeUnit(String unit) {
+	public void encodeUnit(String unit) {
 		StringBuilder output = new StringBuilder();
 
 		String[] data = unit.split(",");
@@ -51,10 +51,7 @@ public class FWEncoder implements Encoder {
 
 		logger.info("Successfully built the output.");
 		
-		this.writer.write(output.toString());
-		
-		return output.toString();
-	}
+		this.writer.write(output.toString());	}
 
 	private void getColumnWidths() {
 		String widths = config.stream().filter(property -> property.key().equals("columnWidths")).findFirst().get()

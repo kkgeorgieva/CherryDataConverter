@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.dxc.cherry.converter.config.Property;
 
-public class CSVOutputFactory implements EncoderFactory {
+public final class CSVOutputFactory implements EncoderFactory {
 
 	private List<Property> config;
 	private OutputWriterInterface writer;

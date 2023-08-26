@@ -39,9 +39,8 @@ public class Converter {
 	 * 
 	 
 	 */
-	public boolean convert() {
+	public void convert() {
 		    try {
-		        System.out.println("Converting started...");
 		        String currentUnit;
 
 		        do {
@@ -51,12 +50,8 @@ public class Converter {
 		            }
 		        } while (currentUnit != null && !currentUnit.isEmpty());
 		    } catch (Exception e) {
-		        System.out.println("Converting failed!");
 		        logger.error(e);
-		        return false;
 		    }
 
-		    System.out.println("Converting successful!");
-		    return true;
 	}
 }

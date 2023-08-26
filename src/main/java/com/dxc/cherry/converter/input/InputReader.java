@@ -13,7 +13,7 @@ import com.dxc.cherry.converter.config.Property;
 /**
  * A file reader class designated for the .csv format.
  */
-public class InputReader implements InputReaderInterface {
+public final class InputReader implements InputReaderInterface {
 	
 	private static Logger logger = LogManager.getLogger(InputReader.class);
 	

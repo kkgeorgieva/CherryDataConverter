@@ -1,6 +1,6 @@
 package com.dxc.cherry.converter.input;
 
-public class FileInputFactory implements InputReaderFactory {
+public final class FileInputFactory implements InputReaderFactory {
 
 	private InputReaderInterface reader;
 	

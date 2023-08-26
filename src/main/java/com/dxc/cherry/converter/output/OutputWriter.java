@@ -14,10 +14,10 @@ import com.dxc.cherry.converter.config.Property;
 /**
  * A file writer class designed to write information to an output file.
  */
-public class OutputWriter implements OutputWriterInterface {
+public final class OutputWriter implements OutputWriterInterface {
 
 	private static Logger logger = LogManager.getLogger(OutputWriter.class);
-	FileWriter fileWriter;
+	private FileWriter fileWriter;
 
 	private String filePath;
 	/**
@@ -34,9 +34,10 @@ public class OutputWriter implements OutputWriterInterface {
 	 * A method that writes data to a file.
 	 * 
 	 * @param input  Already processed data from the input file.
+	 * @return 
 	 */
 	@Override
-	public boolean write(String input) {
+	public void write(String input) {
 		try {
 			fileWriter = new FileWriter(filePath);
 			fileWriter.write(input);
@@ -45,12 +46,10 @@ public class OutputWriter implements OutputWriterInterface {
 			logger.info("Successfully written to a file.");
 			
 			fileWriter.close();
-			return true;
 
 		} catch (IOException e) {
 			logger.error(e.getStackTrace());
 			System.out.println(e.getMessage());
-			return false;
 		}
 
 	}

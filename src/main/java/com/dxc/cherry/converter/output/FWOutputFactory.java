@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.dxc.cherry.converter.config.Property;
 
-public class FWOutputFactory implements EncoderFactory {
+public final class FWOutputFactory implements EncoderFactory {
 
 	private List<Property> config;
 	private OutputWriterInterface writer;

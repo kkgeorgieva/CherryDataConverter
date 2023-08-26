@@ -1,5 +1,4 @@
 package com.dxc.cherry.converter.output;
-import java.io.IOException;
 
 import java.util.List;
 
@@ -9,7 +8,7 @@ import com.dxc.cherry.converter.config.Property;
  * A class in charge of the process of encoding information for a CSV  file.
  */
 
-public class CSVEncoder implements Encoder {
+public final class CSVEncoder implements Encoder {
 	
 	private OutputWriterInterface fileWriter;
 	
@@ -28,7 +27,7 @@ public class CSVEncoder implements Encoder {
 	 * @return Returns the already processed String of information.
 	 */
 	@Override
-	public String encodeUnit(String unit) {
+	public void encodeUnit(String unit) {
 		
 		StringBuilder output = new StringBuilder();
 		
@@ -44,6 +43,5 @@ public class CSVEncoder implements Encoder {
 		
 		fileWriter.write(output.toString());
 	
-		return output.toString();
 	}
 }

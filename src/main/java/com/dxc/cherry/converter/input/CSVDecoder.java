@@ -1,10 +1,9 @@
 package com.dxc.cherry.converter.input;
-import java.util.ArrayList;
 import java.util.List;
 
 import com.dxc.cherry.converter.config.Property;
 
-public class CSVDecoder implements Decoder{
+public final class CSVDecoder implements Decoder{
 	
 	private InputReaderInterface fileReader;
 	
@@ -18,8 +17,7 @@ public class CSVDecoder implements Decoder{
 		this.fileReader = fileReader;
 	}
 
-	@Override
-	public String getNewLine() {
+	private String getNewLine() {
 		String line = null;
 		if ((line = fileReader.readLine()) == null) {
 			fileReader.closeResource();
