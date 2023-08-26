@@ -31,7 +31,6 @@ class ConfigProcessorTest {
 
         List<Property> columnWidthsProperty = ConfigProcessor.getByCategory("output.columnWidths");
         assertNotNull(columnWidthsProperty);
-        System.out.print(columnWidthsProperty);
        // assertEquals(3, columnWidthsProperty.size()); 
         
     }
