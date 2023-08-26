@@ -28,8 +28,9 @@ public class ConfigProcessor implements AutoCloseable {
 	 * 
 	 * @param configFile file containing information needed for converting from one
 	 *                   file format to another
+	 * @throws IOException 
 	 */
-	public static List<Property> parseConfig(String configFile) {
+	public static List<Property> parseConfig(String configFile) throws IOException {
 		List<Property> properties = new ArrayList<>();
 
 		try (FileInputStream inputStream = new FileInputStream(configFile)) {
@@ -43,6 +44,7 @@ public class ConfigProcessor implements AutoCloseable {
 		} catch (IOException e) {
 			logger.error(e.getStackTrace());
 			System.out.println(e.getMessage());
+			throw e;
 		}
 		
 		return properties;
