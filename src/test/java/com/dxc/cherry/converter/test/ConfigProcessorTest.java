@@ -40,12 +40,11 @@ class ConfigProcessorTest {
     void testParseConfigIOException() {
         String nonExistentFile = "nonexistent.yml"; // A file that doesn't exist
         
-       IOException exception =  assertThrows(IOException.class, () -> {
+        ConfigProcessorException exception = assertThrows(ConfigProcessorException.class, () -> {
             ConfigProcessor.parseConfig(nonExistentFile);
-        });
+        }); 
         assertNotNull(exception.getMessage());
-        
-         
+      
     }
 
 }
