@@ -1,4 +1,6 @@
 package com.dxc.cherry.converter.input;
+import java.io.IOException;
+import java.security.InvalidParameterException;
 import java.util.List;
 
 import com.dxc.cherry.converter.config.Property;
@@ -14,10 +16,14 @@ public final class CSVDecoder implements Decoder{
 	 */
 		
 	public CSVDecoder (List<Property> config, InputReaderInterface fileReader) {
+		if (fileReader == null) {
+			throw new InvalidParameterException("Provide a non null fileReader to the decoder!");
+		}
 		this.fileReader = fileReader;
 	}
 
-	private String getNewLine() {
+	
+	private String getNewLine() throws IOException {
 		String line = null;
 		if ((line = fileReader.readLine()) == null) {
 			fileReader.closeResource();
@@ -26,9 +32,10 @@ public final class CSVDecoder implements Decoder{
 	}
 	/**
 	 *@return Returns a unit of information
+	 * @throws IOException 
 	 */
 	@Override
-	public String getUnit() {
+	public String getUnit() throws IOException {
 	    StringBuilder output = new StringBuilder();
 	    String currentLine = getNewLine();
 	    

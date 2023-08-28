@@ -1,6 +1,7 @@
 package com.dxc.cherry.converter.output;
 
 import java.io.IOException;
+import java.io.File;
 import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,8 +27,19 @@ public final class OutputWriter implements OutputWriterInterface {
 	 * @param fileName The name of the output file.
 	 * @throws IOException
 	 */
-	public OutputWriter(String filePath) {
+	public OutputWriter(String filePath) throws IOException {
 		this.filePath = filePath;
+		File file = new File(filePath); 
+		if (file.exists()) {
+			file.delete();
+		}
+		try {
+			file.createNewFile();
+		} catch (IOException e) {
+			logger.error(e);
+			System.out.println(e.getMessage());
+			throw new IOException(e.getMessage());
+		}
 	}
 
 	/**
@@ -35,11 +47,12 @@ public final class OutputWriter implements OutputWriterInterface {
 	 * 
 	 * @param input  Already processed data from the input file.
 	 * @return 
+	 * @throws IOException 
 	 */
 	@Override
-	public void write(String input) {
+	public void write(String input) throws IOException {
 		try {
-			fileWriter = new FileWriter(filePath);
+			fileWriter = new FileWriter(filePath, true);
 			fileWriter.write(input);
 			fileWriter.flush();
 
@@ -50,6 +63,7 @@ public final class OutputWriter implements OutputWriterInterface {
 		} catch (IOException e) {
 			logger.error(e.getStackTrace());
 			System.out.println(e.getMessage());
+			throw new IOException(e.getMessage());
 		}
 
 	}

@@ -22,28 +22,32 @@ public final class InputReader implements InputReaderInterface {
 	/**
 	 * Constructor, which creates a new instance.
 	 * @param filePath The file path of the input file.
+	 * @throws FileNotFoundException 
 	 */
-	public InputReader(String filePath) {
+	public InputReader(String filePath) throws FileNotFoundException {
 		try {
 			br = new BufferedReader(new FileReader(filePath));
 		} catch (FileNotFoundException e) {
-			logger.error(e.getStackTrace());
+			logger.error(e);
 			System.out.println(e.getMessage());
+			throw new FileNotFoundException(e.getMessage());
 		}
 	}
 	/**
 	 * A method that reads data from a file.
 	 * @return Returns a line from the input file
+	 * @throws IOException 
 	 */
 	@Override
-	public String readLine() {
+	public String readLine() throws IOException {
 
         String line = null;
         try {
             line = br.readLine();
         } catch (IOException e) {
-        	logger.error(e.getStackTrace());
+        	logger.error(e);
 			System.out.println(e.getMessage());
+			throw new IOException(e.getMessage());
         }
         logger.info("Successfully read file and parsed into ArrayList of Strings");       
         return line;
@@ -54,12 +58,13 @@ public final class InputReader implements InputReaderInterface {
 	}
 	
 	@Override
-	public void closeResource() {
+	public void closeResource() throws IOException {
 		try {
 			br.close();
 		} catch (IOException e) {
 			logger.error(e);
 			System.out.println("Error closing the input reader!");
+			throw new IOException(e.getMessage());
 		}
 	}
 }

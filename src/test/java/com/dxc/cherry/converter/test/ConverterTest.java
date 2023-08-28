@@ -1,149 +1,69 @@
 package com.dxc.cherry.converter.test;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertInstanceOf;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.security.InvalidParameterException;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
 import com.dxc.cherry.converter.Converter;
 import com.dxc.cherry.converter.ConverterApplication;
+import com.dxc.cherry.converter.TheBestConverter;
 import com.dxc.cherry.converter.config.ConfigProcessor;
+import com.dxc.cherry.converter.config.ConfigProcessorException;
 import com.dxc.cherry.converter.config.Property;
 import com.dxc.cherry.converter.input.CSVDecoder;
+import com.dxc.cherry.converter.input.CSVInputFactory;
 import com.dxc.cherry.converter.input.Decoder;
+import com.dxc.cherry.converter.input.FileInputFactory;
 import com.dxc.cherry.converter.input.InputReader;
+import com.dxc.cherry.converter.input.InputReaderInterface;
 import com.dxc.cherry.converter.output.CSVEncoder;
+import com.dxc.cherry.converter.output.CSVOutputFactory;
 import com.dxc.cherry.converter.output.Encoder;
 import com.dxc.cherry.converter.output.FWEncoder;
+import com.dxc.cherry.converter.output.FWOutputFactory;
+import com.dxc.cherry.converter.output.FileOutputFactory;
 import com.dxc.cherry.converter.output.OutputWriter;
+import com.dxc.cherry.converter.output.OutputWriterInterface;
 
 public class ConverterTest {
 
 	@Test
-	void configProcessorTest() {
-		File resourcesDirectory = new File("src/test/resources");
-		File inputFile = new File(this.getClass().getResource("Test.csv").getFile());
-		File outputFile = new File(this.getClass().getResource("Output.csv").getFile());
+	public void theBestConverterTest() {
 		File configFile = new File(this.getClass().getResource("configTemplate.yaml").getFile());
-		String inputFileType = "CSV";
-		String outputFileType = "FW";
-
-		//assertTrue(ConfigProcessor.parseConfig(configFile.getAbsolutePath()));
-	}
-
-	@Test
-	void csvFileWriterTest() {
-		File outputFile = new File(this.getClass().getResource("Output.csv").getFile());
-		File configFile = new File(this.getClass().getResource("configTemplate.yaml").getFile());
-		File inputFile = new File(this.getClass().getResource("Test.csv").getFile());
-
-		ConfigProcessor.parseConfig(configFile.getAbsolutePath());
-		InputReader reader = new InputReader(inputFile.getAbsolutePath());
-
 		try {
-			OutputWriter writer = new OutputWriter("Output.csv");
+			List<Property> properties = ConfigProcessor.parseConfig(configFile.getAbsolutePath());
+			TheBestConverter converter = new TheBestConverter(properties,
+					this.getClass().getResource("Test.csv").getPath(),
+					this.getClass().getResource("Output.csv").getPath());
+			converter.Convert("CSV", "FW");
 
-			List<Property> propsDecoder = ConfigProcessor.getByCategory(reader.getConfigCategory());
-			List<Property> propsEncoder = ConfigProcessor.getByCategory(writer.getConfigCategory());
+			InputReaderInterface reader;
+			try {
+				reader = new FileInputFactory()
+						.createFactory(new String[] { this.getClass().getResource("Output.csv").getPath() })
+						.getReader();
+				Decoder decoder = new CSVDecoder(null, reader);
+				assertEquals(
+						"Stoyan              23                                                SI                                                ",
+						decoder.getUnit());
 
-			Decoder decoder = new CSVDecoder(propsDecoder, reader);
-			Encoder encoder = new CSVEncoder(propsEncoder, writer);
-
-			String unit = encoder.encodeUnit(decoder.getUnit());
-			assertTrue(writer.write(unit));
-
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-
-	@Test
-	void fwFileWriterTest() {
-		File outputFile = new File(this.getClass().getResource("Output.csv").getFile());
-		File configFile = new File(this.getClass().getResource("configTemplate.yaml").getFile());
-		File inputFile = new File(this.getClass().getResource("Test.csv").getFile());
-
-		ConfigProcessor.parseConfig(configFile.getAbsolutePath());
-		InputReader reader = new InputReader(inputFile.getAbsolutePath());
-
-		try {
-			OutputWriter writer = new OutputWriter("Output.csv");
-
-			List<Property> propsDecoder = ConfigProcessor.getByCategory(reader.getConfigCategory());
-			List<Property> propsEncoder = ConfigProcessor.getByCategory(writer.getConfigCategory());
-
-			Decoder decoder = new CSVDecoder(propsDecoder, reader);
-			Encoder encoder = new FWEncoder(propsEncoder, writer);
-
-			String unit = encoder.encodeUnit(decoder.getUnit());
-			assertTrue(writer.write(unit));
-
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-
-	@Test
-	void csvFileReaderTest() {
-		File outputFile = new File(this.getClass().getResource("Output.csv").getFile());
-		File configFile = new File(this.getClass().getResource("configTemplate.yaml").getFile());
-		File inputFile = new File(this.getClass().getResource("Test.csv").getFile());
-
-		ConfigProcessor.parseConfig(configFile.getAbsolutePath());
-		InputReader reader = new InputReader(inputFile.getAbsolutePath());
-
-		assertEquals(12, reader.readLine().length());
-
-	}
-
-	@Test
-	void converterTest() {
-		File outputFile = new File(this.getClass().getResource("Output.csv").getFile());
-		File configFile = new File(this.getClass().getResource("configTemplate.yaml").getFile());
-		File inputFile = new File(this.getClass().getResource("Test.csv").getFile());
-
-		ConfigProcessor.parseConfig(configFile.getAbsolutePath());
-		InputReader reader = new InputReader(inputFile.getAbsolutePath());
-
-		try {
-			OutputWriter writer = new OutputWriter("Output.csv");
-
-			List<Property> propsDecoder = ConfigProcessor.getByCategory(reader.getConfigCategory());
-			List<Property> propsEncoder = ConfigProcessor.getByCategory(writer.getConfigCategory());
-
-			Decoder decoder = new CSVDecoder(propsDecoder, reader);
-			Encoder encoder = new CSVEncoder(propsEncoder, writer);
-
-			Converter cvt = new Converter(decoder, encoder);
-
-			assertTrue(cvt.convert());
-
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
-	}
-
-	@Test
-	void mainAppTest() {
-		File inputFile = new File(this.getClass().getResource("Test.csv").getFile());
-		File configFile = new File(this.getClass().getResource("configTemplate.yaml").getFile());
-		String inputFileType = "CSV";
-		String outputFileType = "FW";
-
-		try {
-		ConverterApplication.main(new String[] { inputFile.getAbsolutePath(), "C:\\Windows\\Temp\\mainAppTest.csv",
-				configFile.getAbsolutePath(), inputFileType, outputFileType });
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		} catch (Exception e) {
-			System.out.println("ERROR! Make sure you have included all the parameters in the following order:"
-					+ " inputFilePath, outputFilePath, configFilePath, inputFileType, outputFileType");
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-
-		File outputFile = new File("C:\\Windows\\Temp\\mainAppTest.csv");
-		assertTrue(outputFile.exists());
 	}
 }

@@ -22,7 +22,7 @@ public final class FWOutputFactory implements EncoderFactory {
 	}
 
 	@Override
-	public String getFortmat() {
+	public String getFormat() {
 		return "FW";
 	}
 

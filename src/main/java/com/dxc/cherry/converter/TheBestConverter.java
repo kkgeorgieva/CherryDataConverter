@@ -1,5 +1,6 @@
 package com.dxc.cherry.converter;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,6 +14,7 @@ import com.dxc.cherry.converter.input.InputReaderFactory;
 import com.dxc.cherry.converter.output.CSVOutputFactory;
 import com.dxc.cherry.converter.output.Encoder;
 import com.dxc.cherry.converter.output.EncoderFactory;
+import com.dxc.cherry.converter.output.FWOutputFactory;
 import com.dxc.cherry.converter.output.FileOutputFactory;
 import com.dxc.cherry.converter.output.OutputWriterFactory;
 
@@ -24,12 +26,12 @@ public final class TheBestConverter {
 	private Map<String, InputReaderFactory> inputFactories = new HashMap<>();
 	private Map<String, OutputWriterFactory> outputFactories = new HashMap<>();
 	
-	public TheBestConverter(List<Property> config, String inputFile, String outputFile) {
+	public TheBestConverter(List<Property> config, String inputFile, String outputFile) throws IOException {
 		addInputFactory("File", new FileInputFactory().createFactory(new String[] {inputFile}));
 		addDecoderFactory("CSV", new CSVInputFactory().createFactory(config, inputFactories.get("File").getReader()));
 		
 		addOutputFactory("File", new FileOutputFactory().createFactory(new String[] {outputFile}));
-		addEncoderFactory("CSV", new CSVOutputFactory().createFactory(config, outputFactories.get("File").getWriter()));
+		addEncoderFactory("FW", new FWOutputFactory().createFactory(config, outputFactories.get("File").getWriter()));
 	}
 	public void addDecoderFactory(String type, DecoderFactory factory) {
 		decoderFactories.put(type, factory);
@@ -46,7 +48,6 @@ public final class TheBestConverter {
 	}
 	
 	
-	
 	public InputReaderFactory getInputReaderFactory(String type) {
 		return inputFactories.get(type);
 	}
@@ -61,7 +62,7 @@ public final class TheBestConverter {
 	}
 
 	//should accept other parameters
-	public void Convert(String inputType,String outputType) {
+	public void Convert(String inputType,String outputType) throws IOException {
 		//creates new custom converter, based on the different decoder and encoder types
 		Decoder decoder = getDecoderFactory(inputType).getDecoder();
 		Encoder encoder = getEncoderFactory(outputType).getEncoder();

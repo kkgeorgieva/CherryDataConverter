@@ -9,5 +9,5 @@ import com.dxc.cherry.converter.output.OutputWriterInterface;
 public interface EncoderFactory {
 	public EncoderFactory createFactory(List<Property> config, OutputWriterInterface writer);
 	public Encoder getEncoder();
-	public String getFortmat();
+	public String getFormat();
 }

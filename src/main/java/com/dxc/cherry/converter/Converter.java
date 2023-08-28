@@ -1,5 +1,7 @@
 package com.dxc.cherry.converter;
 
+import java.io.IOException;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -36,10 +38,11 @@ public class Converter {
 	 * Method that executes the whole process of converting from one file format to
 	 * another. If the output file does not exists, it creates a new file in the
 	 * user's system and writes to it.
+	 * @throws IOException 
 	 * 
 	 
 	 */
-	public void convert() {
+	public void convert() throws IOException {
 		    try {
 		        String currentUnit;
 
@@ -49,8 +52,10 @@ public class Converter {
 		                encoder.encodeUnit(currentUnit);
 		            }
 		        } while (currentUnit != null && !currentUnit.isEmpty());
-		    } catch (Exception e) {
+		    } catch (IOException e) {
 		        logger.error(e);
+		        System.out.println(e.getMessage());
+		        throw new IOException(e.getMessage());
 		    }
 
 	}

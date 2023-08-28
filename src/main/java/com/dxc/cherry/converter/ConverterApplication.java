@@ -22,36 +22,42 @@ public class ConverterApplication {
 	 *             file format and output file format separated by spaces.
 	 * @throws IOException
 	 */
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) {
 
-		
-		String inputFile = "";
-		String outputFile = "";
-		String configFile = "";
-		String inputFileType = "";
-		String outputFileType = "";
 		try {
-			
-			if (args.length < 5) {
-				throw new IllegalArgumentException("ERROR! Make sure you have included all the parameters in the following order:"
-						+ " inputFilePath, outputFilePath, configFilePath, inputFileType, outputFileType");
+			String inputFile = "";
+			String outputFile = "";
+			String configFile = "";
+			String inputFileType = "";
+			String outputFileType = "";
+			try {
+				
+				if (args.length < 5) {
+					throw new IllegalArgumentException("ERROR! Make sure you have included all the parameters in the following order:"
+							+ " inputFilePath, outputFilePath, configFilePath, inputFileType, outputFileType");
+				}
+				
+				inputFile = args[0];
+				outputFile = args[1];
+				configFile = args[2];
+				inputFileType = args[3];
+				outputFileType = args[4];
+			} catch (Exception e) {
+				logger.error(e);
+				System.out.println(e.getMessage());
+				return;
 			}
-
-			inputFile = args[0];
-			outputFile = args[1];
-			configFile = args[2];
-			inputFileType = args[3];
-			outputFileType = args[4];
+			
+			var config = ConfigProcessor.parseConfig(configFile);
+			
+			TheBestConverter theBestConverter = new TheBestConverter(config, inputFile, outputFile);
+			
+			theBestConverter.Convert(inputFileType, outputFileType);
 		} catch (Exception e) {
 			logger.error(e.getStackTrace());
 			System.out.println(e.getMessage());
+			return;
 		}
-
-		var config = ConfigProcessor.parseConfig(configFile);
-
-		TheBestConverter theBestConverter = new TheBestConverter(config, inputFile, outputFile);
-		
-		theBestConverter.Convert(inputFileType, outputFileType);
 	}
 
 }

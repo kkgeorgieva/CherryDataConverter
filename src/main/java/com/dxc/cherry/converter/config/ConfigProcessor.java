@@ -42,7 +42,7 @@ public class ConfigProcessor implements AutoCloseable {
 			propertyList = properties;
 
 		} catch (Exception e) {
-			logger.error(e.getStackTrace());
+			logger.error(e);
 			throw new ConfigProcessorException("Error occured while processing: " + configFile);
 		}
 		

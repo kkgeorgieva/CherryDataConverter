@@ -22,7 +22,7 @@ public final class CSVOutputFactory implements EncoderFactory {
 	}
 
 	@Override
-	public String getFortmat() {
+	public String getFormat() {
 		return "CSV";
 	}
 

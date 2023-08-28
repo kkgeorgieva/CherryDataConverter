@@ -1,5 +1,7 @@
 package com.dxc.cherry.converter.output;
 
+import java.io.IOException;
+import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,6 +28,9 @@ public final class FWEncoder implements Encoder {
 	 * @param writer An instance of the FileWriterInterface.
 	 */
 	public FWEncoder(List<Property> config, OutputWriterInterface writer) {
+		if (writer == null) {
+			throw new InvalidParameterException("Provide a non null fileWriter to the encoder!");
+		}
 		this.config = config;
 		this.writer = writer;
 		getColumnWidths();
@@ -34,9 +39,11 @@ public final class FWEncoder implements Encoder {
 	/**
 	 * A method that writes data to a file and formats it in a specific way.
 	 * 
-	 *@param unit A string of information, given to the method as a unit.
+	 * @param unit A string of information, given to the method as a unit.
+	 * @throws IOException
 	 */
-	public void encodeUnit(String unit) {
+
+	public void encodeUnit(String unit) throws IOException {
 		StringBuilder output = new StringBuilder();
 
 		String[] data = unit.split(",");
@@ -50,8 +57,15 @@ public final class FWEncoder implements Encoder {
 		output.append('\n');
 
 		logger.info("Successfully built the output.");
-		
-		this.writer.write(output.toString());	}
+
+		try {
+			this.writer.write(output.toString());
+		} catch (IOException e) {
+			System.out.println(e.getMessage());
+			logger.error(e);
+			throw new IOException(e.getMessage());
+		}
+	}
 
 	private void getColumnWidths() {
 		String widths = config.stream().filter(property -> property.key().equals("columnWidths")).findFirst().get()
