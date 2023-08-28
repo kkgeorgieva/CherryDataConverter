@@ -12,14 +12,16 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import com.dxc.cherry.converter.config.ConfigProcessor;
+import com.dxc.cherry.converter.config.ConfigProcessorException;
 import com.dxc.cherry.converter.config.Property;
 
 class ConfigProcessorTest {
 	
 
     @Test
-    void testParseConfig() throws IOException {
+    void testParseConfig() throws ConfigProcessorException {
     	File configFile = new File(this.getClass().getResource("configTemplate.yaml").getFile());
+    	
         List<Property> properties = ConfigProcessor.parseConfig(configFile.getAbsolutePath());
         
        assertNotNull(properties); // properties is not null
