@@ -32,10 +32,7 @@ public class ConverterApplication {
 			String outputFileType = "";
 			try {
 				
-				if (args.length < 5) {
-					throw new IllegalArgumentException("ERROR! Make sure you have included all the parameters in the following order:"
-							+ " inputFilePath, outputFilePath, configFilePath, inputFileType, outputFileType");
-				}
+				lessThan5Args(args);
 				
 				inputFile = args[0];
 				outputFile = args[1];
@@ -57,6 +54,13 @@ public class ConverterApplication {
 			logger.error(e.getStackTrace());
 			System.out.println(e.getMessage());
 			return;
+		}
+	}
+
+	public static void lessThan5Args(String[] args) {
+		if (args.length < 5) {
+			throw new IllegalArgumentException("ERROR! Make sure you have included all the parameters in the following order:"
+					+ " inputFilePath, outputFilePath, configFilePath, inputFileType, outputFileType");
 		}
 	}
 
